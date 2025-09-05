@@ -1,4 +1,4 @@
 export const dynamicLinks = {
-  quiz: `quizes/${quizId}`,
-  result: `results/${quizId}`,
+  quiz: 'quizes/:quizId',
+  result: 'results/:quizId',
 };

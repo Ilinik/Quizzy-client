@@ -1,10 +1,10 @@
 import './assets/styles/main.css';
+import { Outlet } from 'react-router-dom';
 
-import Routing from './routing/Routes';
-import { BrowserRouter } from 'react-router-dom';
-
-function App() {
-  return <BrowserRouter></BrowserRouter>;
+export default function App() {
+  return (
+    <div>
+      <Outlet />
+    </div>
+  );
 }
-
-export default App;
