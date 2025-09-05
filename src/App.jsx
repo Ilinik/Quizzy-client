@@ -1,10 +1,5 @@
-import './assets/styles/main.css';
-import { Outlet } from 'react-router-dom';
+import { Layout } from './Components/commons/Layout/Layout';
 
 export default function App() {
-  return (
-    <div>
-      <Outlet />
-    </div>
-  );
+  return <Layout />;
 }
