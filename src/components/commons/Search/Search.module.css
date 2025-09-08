@@ -1,6 +1,7 @@
 @import url('../../../assets/styles/variables.css');
 
 .search {
+  margin: 0 20px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -23,7 +24,11 @@
   &::placeholder {
     color: #696f79;
     font-family: Poppins;
-    font-size: 19px;
+    font-size: clamp(
+      0.875rem,
+      0.8028846153846154rem + 0.3205128205128205vw,
+      1.1875rem
+    );
     font-style: normal;
     font-weight: 400;
     line-height: normal;
@@ -56,5 +61,21 @@
 
   &:active {
     background: #3178eb;
+  }
+}
+
+@media (max-width: 960px) {
+  .searchInputWrapper {
+    height: 44px;
+  }
+
+  .searchButton {
+    max-height: 44px;
+  }
+}
+
+@media (max-width: 728px) {
+  .search {
+    display: none;
   }
 }

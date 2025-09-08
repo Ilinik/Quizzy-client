@@ -9,8 +9,16 @@
 }
 
 .profilePicture {
-  width: 60px;
-  height: 60px;
+  width: clamp(
+    2.8125rem,
+    2.5961538461538463rem + 0.9615384615384616vw,
+    3.75rem
+  );
+  height: clamp(
+    2.8125rem,
+    2.5961538461538463rem + 0.9615384615384616vw,
+    3.75rem
+  );
   object-fit: cover;
   border-radius: 50%;
 }
@@ -18,8 +26,18 @@
 .profileName {
   color: var(--text);
   font-family: Poppins;
-  font-size: 19px;
+  font-size: clamp(
+    0.875rem,
+    0.8028846153846154rem + 0.3205128205128205vw,
+    1.1875rem
+  );
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+}
+
+@media (max-width: 575px) {
+  .profile {
+    gap: 10px;
+  }
 }

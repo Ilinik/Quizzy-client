@@ -1,0 +1,15 @@
+@import url('../../../assets/styles/variables.css');
+
+.button {
+  padding: 18px 40px;
+  border-radius: 10px;
+  background: var(--primary);
+  display: flex;
+  align-items: center;
+  gap: 30px;
+
+  font-family: Inter, monospace;
+  color: #fff;
+  font-size: clamp(1rem, 0.9423076923076923rem + 0.2564102564102564vw, 1.25rem);
+  font-weight: 600;
+}

@@ -1,6 +1,6 @@
 import styles from './Search.module.css';
 
-export const Search = () => {
+export const Search = ({ className }) => {
   return (
     <div className={styles.search}>
       <div className={styles.searchInputWrapper}>
