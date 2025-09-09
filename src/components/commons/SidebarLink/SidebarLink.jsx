@@ -1,10 +1,16 @@
 import styles from './SidebarLink.module.css';
+import { NavLink } from 'react-router-dom';
 
-export const SidebarLink = ({ name, image }) => {
+export const SidebarLink = ({ name, image, to }) => {
   return (
-    <button className={styles.button}>
-      <img src={image} alt="Image" className={styles.image} />
+    <NavLink
+      to={to}
+      className={({ isActive }) =>
+        `${styles.button} ${isActive ? styles.buttonActive : ''}`
+      }
+    >
+      {image}
       {name}
-    </button>
+    </NavLink>
   );
 };

@@ -10,7 +10,7 @@ export const Search = ({ className }) => {
           className={styles.searchInput}
         />
         <img
-          src="/search/search.svg"
+          src="/images/search/search.svg"
           alt="search"
           className={styles.searchIcon}
         />

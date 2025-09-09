@@ -3,13 +3,25 @@
 .button {
   padding: 18px 40px;
   border-radius: 10px;
-  background: var(--primary);
+  background: var(--background);
   display: flex;
   align-items: center;
   gap: 30px;
+  width: 260px;
 
   font-family: Inter, monospace;
-  color: #fff;
+  color: var(--text-inactive);
   font-size: clamp(1rem, 0.9423076923076923rem + 0.2564102564102564vw, 1.25rem);
   font-weight: 600;
+  transition: background 0.3s ease, color 0.3s ease;
+  cursor: pointer;
+}
+
+.buttonActive {
+  background: var(--primary);
+  color: #fff;
+}
+
+.iconActive {
+  color: var(--background-tile);
 }
