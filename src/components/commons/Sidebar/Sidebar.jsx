@@ -19,7 +19,7 @@ export const Sidebar = () => {
   ];
 
   return (
-    <aside>
+    <aside className={styles.sidebar}>
       <nav className={styles.nav}>
         {link.map((item) => (
           <SidebarLink

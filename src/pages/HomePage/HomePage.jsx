@@ -1,9 +1,5 @@
-import { Sidebar } from '../../components/commons/Sidebar/Sidebar';
+import { WhiteTile } from '../../components/commons/WhiteTile/WhiteTile';
 
 export const HomePage = () => {
-  return (
-    <div>
-      <Sidebar />
-    </div>
-  );
+  return <WhiteTile>Home Page</WhiteTile>;
 };

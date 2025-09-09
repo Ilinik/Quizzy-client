@@ -1,5 +1,6 @@
 import { Outlet } from 'react-router-dom';
 import { Header } from '../Header/Header';
+import { Sidebar } from '../Sidebar/Sidebar';
 import styles from './Layout.module.css';
 
 export const Layout = () => {
@@ -7,7 +8,8 @@ export const Layout = () => {
     <div className="container">
       <div className={styles.layout}>
         <Header />
-        <main>
+        <main className={styles.pageWrapper}>
+          <Sidebar />
           <Outlet />
         </main>
       </div>

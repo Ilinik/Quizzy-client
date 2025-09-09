@@ -1,3 +1,9 @@
+.sidebar {
+  position: sticky;
+  left: 0;
+  height: 100vh;
+}
+
 .nav {
   display: flex;
   flex-direction: column;
