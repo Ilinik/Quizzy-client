@@ -5,14 +5,21 @@ import styles from './Layout.module.css';
 
 export const Layout = () => {
   return (
-    <div className="container">
-      <div className={styles.layout}>
-        <Header />
+    <>
+      <div className={styles.headerWrapper}>
+        <div className="container">
+          <Header />
+        </div>
+      </div>
+
+      <div className="container">
         <main className={styles.pageWrapper}>
           <Sidebar />
-          <Outlet />
+          <div className={styles.content}>
+            <Outlet />
+          </div>
         </main>
       </div>
-    </div>
+    </>
   );
 };
