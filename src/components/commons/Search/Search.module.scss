@@ -1,5 +1,4 @@
-@import url('../../../assets/styles/variables.css');
-
+@use '@/assets/styles/variables' as *;
 .search {
   margin: 0 20px;
   display: flex;
@@ -23,7 +22,7 @@
 
   &::placeholder {
     color: #696f79;
-    font-family: Poppins;
+    font-family: Poppins, sans-serif;
     font-size: clamp(
       0.875rem,
       0.8028846153846154rem + 0.3205128205128205vw,
@@ -46,7 +45,7 @@
 
 .searchButton {
   padding: 14px 24px;
-  background: var(--primary);
+  background: $primary;
   display: flex;
   align-items: center;
   justify-content: center;

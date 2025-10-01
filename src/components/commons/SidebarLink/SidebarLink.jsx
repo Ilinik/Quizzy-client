@@ -1,4 +1,4 @@
-import styles from './SidebarLink.module.css';
+import styles from './SidebarLink.module.scss';
 import { NavLink } from 'react-router-dom';
 
 export const SidebarLink = ({ name, image, to }) => {

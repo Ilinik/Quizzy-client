@@ -2,7 +2,7 @@ import { SidebarLink } from '../SidebarLink/SidebarLink';
 import { staticLinks } from '../../../config/staticLinks';
 import { Home } from '../../icons/Home';
 import { Quizes } from '../../icons/Quizes';
-import styles from './Sidebar.module.css';
+import styles from './Sidebar.module.scss';
 
 export const Sidebar = () => {
   const link = [
