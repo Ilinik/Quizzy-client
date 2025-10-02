@@ -6,6 +6,7 @@ import { HomePage } from '../pages/HomePage/HomePage';
 import { QuizesPage } from '../pages/QuizesPage/QuizesPage.jsx';
 import { QuizPage } from '../pages/QuizPage/QuizPage';
 import { ResultPage } from '../pages/ResultPage/ResultPage';
+import NotFound  from '../pages/NotFound/NotFound.jsx';
 
 export const router = createBrowserRouter([
   {
@@ -13,9 +14,10 @@ export const router = createBrowserRouter([
     Component: App,
     children: [
       { index: true, Component: HomePage },
-      { path: staticLinks.quizes, Component: QuizesPage },
+      { path: staticLinks .quizes, Component: QuizesPage },
       { path: dynamicLinks.quiz, Component: QuizPage },
       { path: dynamicLinks.result, Component: ResultPage },
+      { path: '*', Component: NotFound },
     ],
   },
 ]);

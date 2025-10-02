@@ -1,0 +1,59 @@
+@use '@/assets/styles/variables' as *;
+
+.root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - $header-height);
+  padding: 20px;
+}
+
+.card {
+  background-color: $background-tile;
+  border-radius: 16px;
+  padding: 60px 40px;
+  text-align: center;
+  max-width: 500px;
+  width: 100%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.errorCode {
+  font-size: 96px;
+  font-weight: 700;
+  color: $text-inactive;
+  margin-bottom: 24px;
+  line-height: 1;
+}
+
+.title {
+  font-size: 28px;
+  font-weight: 600;
+  color: $text;
+  margin-bottom: 16px;
+}
+
+.description {
+  font-size: 16px;
+  color: $text-inactive;
+  margin-bottom: 32px;
+  line-height: 1.6;
+}
+
+.button {
+  display: inline-block;
+  background-color: $primary;
+  color: #fff;
+  padding: 12px 28px;
+  border-radius: 8px;
+  border: none;
+  font-size: 15px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: opacity 0.2s;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.9;
+  }
+}
