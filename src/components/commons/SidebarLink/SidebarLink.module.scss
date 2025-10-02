@@ -1,16 +1,15 @@
-@import url('../../../assets/styles/variables.css');
-
+@use '@/assets/styles/variables' as *;
 .button {
   padding: 18px 40px;
   border-radius: 10px;
-  background: var(--background);
+  background: $background;
   display: flex;
   align-items: center;
   gap: 30px;
   width: 260px;
 
   font-family: Inter, monospace;
-  color: var(--text-inactive);
+  color: $text-inactive;
   font-size: clamp(1rem, 0.9423076923076923rem + 0.2564102564102564vw, 1.25rem);
   font-weight: 600;
   transition: background 0.3s ease, color 0.3s ease;
@@ -18,10 +17,10 @@
 }
 
 .buttonActive {
-  background: var(--primary);
+  background: $primary;
   color: #fff;
 }
 
 .iconActive {
-  color: var(--background-tile);
+  color: $background-tile;
 }

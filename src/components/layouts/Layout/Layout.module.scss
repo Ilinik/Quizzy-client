@@ -1,8 +1,10 @@
+@use '@/assets/styles/variables' as *;
+
 .headerWrapper {
   position: sticky;
   top: 0;
   z-index: 1000;
-  background: var(--background);
+  background: $background;
 }
 
 .pageWrapper {
