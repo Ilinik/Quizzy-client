@@ -14,7 +14,7 @@ export const Sidebar = () => {
     {
       name: 'Квизы',
       image: <Quizes />,
-      to: staticLinks.quizes,
+      to: staticLinks.quizzes,
     },
   ];
 

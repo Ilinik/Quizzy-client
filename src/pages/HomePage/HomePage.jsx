@@ -1,5 +1,7 @@
 import { WhiteTile } from '../../components/commons/WhiteTile/WhiteTile';
 
-export const HomePage = () => {
+const HomePage = () => {
   return <WhiteTile>Home Page</WhiteTile>;
 };
+
+export default HomePage;

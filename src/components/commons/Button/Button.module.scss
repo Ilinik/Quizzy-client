@@ -1,0 +1,21 @@
+@use '@/assets/styles/variables' as *;
+
+.button {
+  padding: 12px;
+  background: $primary;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.35s ease;
+
+  &:hover {
+    box-shadow: 0 6px 20px rgba($primary, 0.3);
+  }
+
+  &:active {
+    transform: scale(0.97);
+  }
+}
