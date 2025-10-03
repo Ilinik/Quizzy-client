@@ -12,7 +12,7 @@ const QuizzesPage = () => {
       questionsCount: 15,
       difficulty: 'Легкий',
       category: 'Программирование',
-      image: '🚀'
+      image: '🚀',
     },
     {
       id: 2,
@@ -21,7 +21,7 @@ const QuizzesPage = () => {
       questionsCount: 20,
       difficulty: 'Средний',
       category: 'Программирование',
-      image: '⚛️'
+      image: '⚛️',
     },
     {
       id: 3,
@@ -30,7 +30,7 @@ const QuizzesPage = () => {
       questionsCount: 12,
       difficulty: 'Легкий',
       category: 'Дизайн',
-      image: '🎨'
+      image: '🎨',
     },
     {
       id: 4,
@@ -39,7 +39,7 @@ const QuizzesPage = () => {
       questionsCount: 18,
       difficulty: 'Сложный',
       category: 'Программирование',
-      image: '📘'
+      image: '📘',
     },
     {
       id: 5,
@@ -48,7 +48,7 @@ const QuizzesPage = () => {
       questionsCount: 10,
       difficulty: 'Средний',
       category: 'Безопасность',
-      image: '🔒'
+      image: '🔒',
     },
     {
       id: 6,
@@ -57,12 +57,18 @@ const QuizzesPage = () => {
       questionsCount: 16,
       difficulty: 'Средний',
       category: 'Программирование',
-      image: '🟢'
-    }
+      image: '🟢',
+    },
   ];
 
   return (
     <WhiteTile>
+      <div className={styles.titleWrapper}>
+        <h1 className={styles.title}>Библиотека квизов</h1>
+        <p className={styles.subtitle}>
+          Погрузитесь в мир увлекательных викторин и тестов!
+        </p>
+      </div>
       <div className={styles.quizzesGrid}>
         {mockQuizzes.map((quiz) => (
           <QuizCard key={quiz.id} quiz={quiz} />

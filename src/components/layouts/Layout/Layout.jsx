@@ -3,7 +3,7 @@ import { Header } from '../../commons/Header/Header.jsx';
 import { Sidebar } from '../../commons/Sidebar/Sidebar.jsx';
 import styles from './Layout.module.scss';
 
-export const Layout = () => {
+const Layout = () => {
   return (
     <>
       <div className={styles.headerWrapper}>
@@ -23,3 +23,5 @@ export const Layout = () => {
     </>
   );
 };
+
+export default Layout;

@@ -7,6 +7,7 @@ import ResultPage from '../pages/ResultPage/ResultPage.jsx';
 import NotFound from '../pages/NotFound/NotFound.jsx';
 import { staticLinks } from '../config/staticLinks';
 import { dynamicLinks } from '../config/dynamicLinks';
+import MinimalLayout from '@/components/layouts/MinimalLayout/MinimalLayout.jsx';
 
 export const router = createBrowserRouter([
   {
@@ -16,7 +17,10 @@ export const router = createBrowserRouter([
       { path: staticLinks.quizzes, element: <QuizzesPage /> },
       { path: dynamicLinks.quiz, element: <QuizPage /> },
       { path: dynamicLinks.result, element: <ResultPage /> },
-      { path: '*', element: <NotFound /> },
     ],
+  },
+  {
+    element: <MinimalLayout />,
+    children: [{ path: '*', element: <NotFound /> }],
   },
 ]);

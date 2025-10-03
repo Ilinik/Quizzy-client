@@ -1,5 +1,6 @@
 import styles from './NotFound.module.scss';
 import { useNavigate } from 'react-router-dom';
+import Button from '@/components/commons/Button/Button.jsx';
 
 const NotFound = () => {
   const navigate = useNavigate();
@@ -14,9 +15,13 @@ const NotFound = () => {
           К сожалению, запрашиваемая страница не существует или была удалена
         </p>
 
-        <button onClick={() => {navigate('/')}} className={styles.button}>
+        <Button
+          onClick={() => {
+            navigate('/');
+          }}
+        >
           Вернуться на главную
-        </button>
+        </Button>
       </div>
     </div>
   );
