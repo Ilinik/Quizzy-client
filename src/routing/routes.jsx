@@ -8,6 +8,7 @@ import NotFound from '../pages/NotFound/NotFound.jsx';
 import { staticLinks } from '../config/staticLinks';
 import { dynamicLinks } from '../config/dynamicLinks';
 import MinimalLayout from '@/components/layouts/MinimalLayout/MinimalLayout.jsx';
+import WelcomePage from '../pages/WelcomePage/WelcomePage.jsx';
 
 export const router = createBrowserRouter([
   {
@@ -21,6 +22,9 @@ export const router = createBrowserRouter([
   },
   {
     element: <MinimalLayout />,
-    children: [{ path: '*', element: <NotFound /> }],
+    children: [
+      { path: staticLinks.welcome, element: <WelcomePage /> },
+      { path: '*', element: <NotFound /> },
+    ],
   },
 ]);
