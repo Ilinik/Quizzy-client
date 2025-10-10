@@ -13,6 +13,11 @@
   cursor: pointer;
 }
 
+.buttons {
+  display: flex;
+  gap: 12px;
+}
+
 @media (max-width: 575px) {
   .logo {
     width: 110px;

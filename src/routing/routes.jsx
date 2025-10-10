@@ -8,6 +8,9 @@ import NotFound from '../pages/NotFound/NotFound.jsx';
 import { staticLinks } from '../config/staticLinks';
 import { dynamicLinks } from '../config/dynamicLinks';
 import MinimalLayout from '@/components/layouts/MinimalLayout/MinimalLayout.jsx';
+import WelcomePage from '../pages/WelcomePage/WelcomePage.jsx';
+import RegisterPage from '@/pages/RegisterPage/RegisterPage.jsx';
+import LoginPage from '@/pages/LoginPage/LoginPage.jsx';
 
 export const router = createBrowserRouter([
   {
@@ -21,6 +24,11 @@ export const router = createBrowserRouter([
   },
   {
     element: <MinimalLayout />,
-    children: [{ path: '*', element: <NotFound /> }],
+    children: [
+      { path: staticLinks.welcome, element: <WelcomePage /> },
+      { path: staticLinks.register, element: <RegisterPage /> },
+      { path: staticLinks.login, element: <LoginPage /> },
+      { path: '*', element: <NotFound /> },
+    ],
   },
 ]);

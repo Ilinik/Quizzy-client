@@ -1,21 +1,100 @@
 @use '@/assets/styles/variables' as *;
 
 .button {
-  padding: 12px;
-  background: $primary;
-  color: white;
-  border: none;
-  border-radius: 10px;
+  padding: 12px 20px;
   font-size: 15px;
   font-weight: 600;
+  border: none;
+  border-radius: 10px;
   cursor: pointer;
-  transition: all 0.35s ease;
-
-  &:hover {
-    box-shadow: 0 6px 20px rgba($primary, 0.3);
-  }
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 
   &:active {
     transform: scale(0.97);
+  }
+
+  &.outline {
+    background: transparent;
+    border: 2px solid currentColor;
+    box-shadow: none;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.03);
+    }
+  }
+}
+
+.primary {
+  background-color: $primary;
+  color: #fff;
+
+  &:hover {
+    background-color: rgba($primary, 0.85);
+    box-shadow: 0 6px 18px rgba($primary, 0.25);
+  }
+
+  &.outline {
+    color: $primary;
+
+    &:hover {
+      background-color: rgba($primary, 0.08);
+    }
+  }
+}
+
+.accent {
+  background-color: $accent;
+  color: #fff;
+
+  &:hover {
+    background-color: rgba($accent, 0.85);
+    box-shadow: 0 6px 18px rgba($accent, 0.25);
+  }
+
+  &.outline {
+    color: $accent;
+
+    &:hover {
+      background-color: rgba($accent, 0.08);
+    }
+  }
+}
+
+.success {
+  background-color: $buttons;
+  color: #fff;
+
+  &:hover {
+    background-color: rgba($buttons, 0.85);
+    box-shadow: 0 6px 18px rgba($buttons, 0.25);
+  }
+
+  &.outline {
+    color: $buttons;
+
+    &:hover {
+      background-color: rgba($buttons, 0.08);
+    }
+  }
+}
+
+.neutral {
+  background-color: $text-inactive;
+  color: #fff;
+
+  &:hover {
+    background-color: rgba($text-inactive, 0.85);
+    box-shadow: 0 6px 18px rgba($text-inactive, 0.25);
+  }
+
+  &.outline {
+    color: $text-inactive;
+
+    &:hover {
+      background-color: rgba($text-inactive, 0.08);
+    }
   }
 }
