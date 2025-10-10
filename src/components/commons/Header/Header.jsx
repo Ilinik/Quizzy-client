@@ -5,9 +5,11 @@ import { Profile } from '../Profile/Profile';
 import styles from './Header.module.scss';
 import { useStore } from '@/hooks/useStore.js';
 import Button from '@/components/commons/Button/Button.jsx';
+import { useNavigate } from 'react-router-dom';
 
 export const Header = observer(() => {
   const authStore = useStore().auth;
+  const navigate = useNavigate();
   return (
     <header className={styles.header}>
       <img
@@ -24,10 +26,12 @@ export const Header = observer(() => {
         </>
       ) : (
         <div className={styles.buttons}>
-          <Button color="neutral" outline>
+          <Button color="neutral" outline onClick={() => navigate('/login')}>
             Войти
           </Button>
-          <Button>Зарегистрироваться</Button>
+          <Button onClick={() => navigate('/registration')}>
+            Зарегистрироваться
+          </Button>
         </div>
       )}
     </header>
