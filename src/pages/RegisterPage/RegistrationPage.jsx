@@ -2,16 +2,17 @@ import Button from '@/components/commons/Button/Button.jsx';
 import { Link, useNavigate } from 'react-router-dom';
 import '@/assets/styles/auth.scss';
 
-const LoginPage = () => {
+const RegistrationPage = () => {
   const navigate = useNavigate();
 
   return (
     <div className="auth">
       <div className="card">
-        <h1 className="title">Войти в аккаунт</h1>
-        <p className="subtitle">Введите свои данные для входа</p>
+        <h1 className="title">Создать аккаунт</h1>
+        <p className="subtitle">Введите данные для регистрации</p>
 
         <form className="form">
+          <input type="text" placeholder="Имя" className="input" />
           <input type="email" placeholder="Email" className="input" />
           <input type="password" placeholder="Пароль" className="input" />
 
@@ -21,14 +22,14 @@ const LoginPage = () => {
             className="cta"
             onClick={(e) => e.preventDefault()}
           >
-            Войти
+            Зарегистрироваться
           </Button>
         </form>
 
         <p className="switch">
-          Нет аккаунта?{' '}
-          <Link className="switch__link" to="/registration">
-            Зарегистрироваться
+          Уже есть аккаунт?{' '}
+          <Link className="switch__link" to="/login">
+            Войти
           </Link>
         </p>
 
@@ -45,4 +46,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default RegistrationPage;
