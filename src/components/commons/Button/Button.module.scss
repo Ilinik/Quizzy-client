@@ -4,25 +4,28 @@
   padding: 12px 20px;
   font-size: 15px;
   font-weight: 600;
-  border: none;
+  border: 1px solid transparent;
   border-radius: 10px;
+  background-color: transparent;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition:
+    background-color 0.2s ease,
+    transform 0.1s ease;
   display: inline-flex;
   align-items: center;
   justify-content: center;
 
   &:active {
-    transform: scale(0.97);
+    transform: scale(0.98);
   }
 
   &.outline {
     background: transparent;
-    border: 2px solid currentColor;
     box-shadow: none;
+    border-color: currentColor;
 
     &:hover {
-      background-color: rgba(0, 0, 0, 0.03);
+      background-color: rgba(0, 0, 0, 0.05);
     }
   }
 }
@@ -30,17 +33,19 @@
 .primary {
   background-color: $primary;
   color: #fff;
+  border-color: $primary;
 
   &:hover {
-    background-color: rgba($primary, 0.85);
-    box-shadow: 0 6px 18px rgba($primary, 0.25);
+    background-color: $primary;
+    opacity: 0.9;
   }
 
   &.outline {
+    background: transparent;
     color: $primary;
 
     &:hover {
-      background-color: rgba($primary, 0.08);
+      background-color: rgba($primary, 0.1);
     }
   }
 }
@@ -48,17 +53,18 @@
 .accent {
   background-color: $accent;
   color: #fff;
+  border-color: $accent;
 
   &:hover {
-    background-color: rgba($accent, 0.85);
-    box-shadow: 0 6px 18px rgba($accent, 0.25);
+    opacity: 0.9;
   }
 
   &.outline {
+    background: transparent;
     color: $accent;
 
     &:hover {
-      background-color: rgba($accent, 0.08);
+      background-color: rgba($accent, 0.1);
     }
   }
 }
@@ -66,17 +72,18 @@
 .success {
   background-color: $buttons;
   color: #fff;
+  border-color: $buttons;
 
   &:hover {
-    background-color: rgba($buttons, 0.85);
-    box-shadow: 0 6px 18px rgba($buttons, 0.25);
+    opacity: 0.9;
   }
 
   &.outline {
+    background: transparent;
     color: $buttons;
 
     &:hover {
-      background-color: rgba($buttons, 0.08);
+      background-color: rgba($buttons, 0.1);
     }
   }
 }
@@ -84,17 +91,18 @@
 .neutral {
   background-color: $text-inactive;
   color: #fff;
+  border-color: $text-inactive;
 
   &:hover {
-    background-color: rgba($text-inactive, 0.85);
-    box-shadow: 0 6px 18px rgba($text-inactive, 0.25);
+    opacity: 0.9;
   }
 
   &.outline {
+    background: transparent;
     color: $text-inactive;
 
     &:hover {
-      background-color: rgba($text-inactive, 0.08);
+      background-color: rgba($text-inactive, 0.1);
     }
   }
 }
