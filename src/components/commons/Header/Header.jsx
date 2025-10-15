@@ -19,7 +19,7 @@ export const Header = observer(() => {
         height={80}
         className={styles.logo}
       />
-      {authStore.isAuthenticated ? (
+      {authStore.isAuth ? (
         <>
           <Search />
           <Profile user={authStore.user} />
