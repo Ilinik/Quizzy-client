@@ -1,10 +1,10 @@
 import Layout from './components/layouts/Layout/Layout';
-import { StoreProvider } from '@/components/providers/StoreProvider.jsx';
+import { Outlet } from 'react-router-dom';
 
 export default function App() {
   return (
-    <StoreProvider>
-      <Layout />
-    </StoreProvider>
+    <Layout>
+      <Outlet />
+    </Layout>
   );
 }

@@ -2,7 +2,7 @@ import { makeAutoObservable } from 'mobx';
 
 export class AuthStore {
   user = null;
-  isAuthenticated = false;
+  isAuth = true;
   isLoading = false;
 
   constructor() {
@@ -11,12 +11,12 @@ export class AuthStore {
 
   login(userData) {
     this.user = userData;
-    this.isAuthenticated = true;
+    this.isAuth = true;
   }
 
   logout() {
     this.user = null;
-    this.isAuthenticated = false;
+    this.isAuth = false;
   }
 
   setIsLoading(val) {

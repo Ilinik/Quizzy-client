@@ -11,24 +11,38 @@ import MinimalLayout from '@/components/layouts/MinimalLayout/MinimalLayout.jsx'
 import WelcomePage from '../pages/WelcomePage/WelcomePage.jsx';
 import RegistrationPage from '@/pages/RegisterPage/RegistrationPage.jsx';
 import LoginPage from '@/pages/LoginPage/LoginPage.jsx';
+import PrivateRoute from '@/routing/PrivateRoute.jsx';
+import PublicRoute from '@/routing/PublicRoute.jsx';
 
 export const router = createBrowserRouter([
   {
     element: <App />,
     children: [
-      { path: staticLinks.main, element: <HomePage /> },
-      { path: staticLinks.quizzes, element: <QuizzesPage /> },
-      { path: dynamicLinks.quiz, element: <QuizPage /> },
-      { path: dynamicLinks.result, element: <ResultPage /> },
+      {
+        element: <PrivateRoute />,
+        children: [
+          { path: staticLinks.main, element: <HomePage /> },
+          { path: staticLinks.quizzes, element: <QuizzesPage /> },
+          { path: dynamicLinks.quiz, element: <QuizPage /> },
+          { path: dynamicLinks.result, element: <ResultPage /> },
+        ],
+      },
     ],
   },
+
   {
     element: <MinimalLayout />,
     children: [
-      { path: staticLinks.welcome, element: <WelcomePage /> },
-      { path: staticLinks.register, element: <RegistrationPage /> },
-      { path: staticLinks.login, element: <LoginPage /> },
-      { path: '*', element: <NotFound /> },
+      {
+        element: <PublicRoute />,
+        children: [
+          { path: staticLinks.welcome, element: <WelcomePage /> },
+          { path: staticLinks.register, element: <RegistrationPage /> },
+          { path: staticLinks.login, element: <LoginPage /> },
+        ],
+      },
     ],
   },
+
+  { path: '*', element: <NotFound /> },
 ]);
