@@ -3,7 +3,7 @@ import AuthService from '@/services/AuthService.js';
 
 export class AuthStore {
   user = {};
-  isAuth = true;
+  isAuth = false;
   isLoading = false;
 
   constructor() {
@@ -21,7 +21,8 @@ export class AuthStore {
   async login(email, password) {
     try {
       const response = await AuthService.login(email, password);
-      localStorage.setItem('token', response.data.accessToken);
+      console.log(response);
+      localStorage.setItem('token', response.data.tokens.accessToken);
       this.setAuth(true);
       this.setUser(response.data.user);
     } catch (e) {
@@ -31,8 +32,9 @@ export class AuthStore {
 
   async registration(name, email, password) {
     try {
-      const response = await AuthService.login(name, email, password);
-      localStorage.setItem('token', response.data.accessToken);
+      const response = await AuthService.registration(name, email, password);
+      console.log(response);
+      localStorage.setItem('token', response.data.tokens.accessToken);
       this.setAuth(true);
       this.setUser(response.data.user);
     } catch (e) {

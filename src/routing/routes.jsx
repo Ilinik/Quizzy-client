@@ -9,7 +9,7 @@ import { staticLinks } from '../config/staticLinks';
 import { dynamicLinks } from '../config/dynamicLinks';
 import MinimalLayout from '@/components/layouts/MinimalLayout/MinimalLayout.jsx';
 import WelcomePage from '../pages/WelcomePage/WelcomePage.jsx';
-import RegistrationPage from '@/pages/RegisterPage/RegistrationPage.jsx';
+import RegistrationPage from '@/pages/RegistrationPage/RegistrationPage.jsx';
 import LoginPage from '@/pages/LoginPage/LoginPage.jsx';
 import PrivateRoute from '@/routing/PrivateRoute.jsx';
 import PublicRoute from '@/routing/PublicRoute.jsx';
