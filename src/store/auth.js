@@ -1,5 +1,7 @@
 import { makeAutoObservable } from 'mobx';
 import AuthService from '@/services/AuthService.js';
+import axios from 'axios';
+import { API_URL } from '@/http/index.js';
 
 export class AuthStore {
   user = {};
@@ -48,6 +50,19 @@ export class AuthStore {
       localStorage.removeItem('token');
       this.setAuth(false);
       this.setUser({});
+    } catch (e) {
+      console.log(e.response?.data?.message);
+    }
+  }
+
+  async checkAuth() {
+    try {
+      const response = await axios.get(`${API_URL}/auth/refresh`, {
+        withCredentials: true,
+      });
+      localStorage.setItem('token', response.data.tokens.accessToken);
+      this.setAuth(true);
+      this.setUser(response.data.user);
     } catch (e) {
       console.log(e.response?.data?.message);
     }
