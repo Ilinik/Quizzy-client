@@ -4,46 +4,56 @@
   padding: 12px 20px;
   font-size: 15px;
   font-weight: 600;
-  border: 1px solid transparent;
   border-radius: 10px;
-  background-color: transparent;
   cursor: pointer;
-  transition:
-    background-color 0.2s ease,
-    transform 0.1s ease;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  border: 1px solid transparent;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.1s ease,
+    opacity 0.15s ease;
 
   &:active {
     transform: scale(0.98);
   }
+}
 
-  &.outline {
-    background: transparent;
-    box-shadow: none;
-    border-color: currentColor;
+.filled {
+  color: #fff;
+}
 
-    &:hover {
-      background-color: rgba(0, 0, 0, 0.05);
-    }
-  }
+.light {
+  background-color: transparent;
+}
+
+.outline {
+  background-color: transparent;
+  border-width: 1px;
 }
 
 .primary {
-  background-color: $primary;
-  color: #fff;
-  border-color: $primary;
-
-  &:hover {
+  &.filled {
     background-color: $primary;
-    opacity: 0.9;
+    border-color: $primary;
+    &:hover {
+      background-color: $primary-dark;
+    }
+  }
+
+  &.light {
+    color: $primary;
+    background-color: rgba($primary-light, 0.25);
+    &:hover {
+      background-color: rgba($primary-light, 0.35);
+    }
   }
 
   &.outline {
-    background: transparent;
     color: $primary;
-
+    border-color: $primary;
     &:hover {
       background-color: rgba($primary, 0.1);
     }
@@ -51,18 +61,26 @@
 }
 
 .accent {
-  background-color: $accent;
-  color: #fff;
-  border-color: $accent;
+  &.filled {
+    background-color: $accent;
+    border-color: $accent;
+    color: #fff;
+    &:hover {
+      background-color: $accent-dark;
+    }
+  }
 
-  &:hover {
-    opacity: 0.9;
+  &.light {
+    color: $accent-dark;
+    background-color: rgba($accent-light, 0.3);
+    &:hover {
+      background-color: rgba($accent-light, 0.45);
+    }
   }
 
   &.outline {
-    background: transparent;
-    color: $accent;
-
+    color: $accent-dark;
+    border-color: $accent;
     &:hover {
       background-color: rgba($accent, 0.1);
     }
@@ -70,37 +88,133 @@
 }
 
 .success {
-  background-color: $buttons;
-  color: #fff;
-  border-color: $buttons;
+  &.filled {
+    background-color: $success;
+    border-color: $success;
+    color: #fff;
+    &:hover {
+      background-color: $success-dark;
+    }
+  }
 
-  &:hover {
-    opacity: 0.9;
+  &.light {
+    color: $success-dark;
+    background-color: rgba($success-light, 0.25);
+    &:hover {
+      background-color: rgba($success-light, 0.35);
+    }
   }
 
   &.outline {
-    background: transparent;
-    color: $buttons;
-
+    color: $success;
+    border-color: $success;
     &:hover {
-      background-color: rgba($buttons, 0.1);
+      background-color: rgba($success, 0.1);
+    }
+  }
+}
+
+.danger {
+  &.filled {
+    background-color: $danger;
+    border-color: $danger;
+    color: #fff;
+    &:hover {
+      background-color: $danger-dark;
+    }
+  }
+
+  &.light {
+    color: $danger-dark;
+    background-color: rgba($danger-light, 0.1);
+    &:hover {
+      background-color: rgba($danger-light, 0.2);
+    }
+  }
+
+  &.outline {
+    color: $danger;
+    border-color: $danger;
+    &:hover {
+      background-color: rgba($danger, 0.1);
+    }
+  }
+}
+
+.warning {
+  &.filled {
+    background-color: $warning;
+    border-color: $warning;
+    color: #fff;
+    &:hover {
+      background-color: $warning-dark;
+    }
+  }
+
+  &.light {
+    color: $warning-dark;
+    background-color: rgba($warning-light, 0.25);
+    &:hover {
+      background-color: rgba($warning-light, 0.35);
+    }
+  }
+
+  &.outline {
+    color: $warning;
+    border-color: $warning;
+    &:hover {
+      background-color: rgba($warning, 0.1);
+    }
+  }
+}
+
+.info {
+  &.filled {
+    background-color: $info;
+    border-color: $info;
+    color: #fff;
+    &:hover {
+      background-color: $info-dark;
+    }
+  }
+
+  &.light {
+    color: $info-dark;
+    background-color: rgba($info-light, 0.25);
+    &:hover {
+      background-color: rgba($info-light, 0.35);
+    }
+  }
+
+  &.outline {
+    color: $info;
+    border-color: $info;
+    &:hover {
+      background-color: rgba($info, 0.1);
     }
   }
 }
 
 .neutral {
-  background-color: $text-inactive;
-  color: #fff;
-  border-color: $text-inactive;
+  &.filled {
+    background-color: $text-inactive;
+    border-color: $text-inactive;
+    color: #fff;
+    &:hover {
+      background-color: darken($text-inactive, 10%);
+    }
+  }
 
-  &:hover {
-    opacity: 0.9;
+  &.light {
+    color: $text-inactive;
+    &:hover {
+      background-color: rgba($text-inactive, 0.15);
+    }
   }
 
   &.outline {
-    background: transparent;
     color: $text-inactive;
-
+    border-color: $text-inactive;
     &:hover {
       background-color: rgba($text-inactive, 0.1);
     }

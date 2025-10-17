@@ -1,0 +1,34 @@
+@use '@/assets/styles/variables' as *;
+
+.dropdownMenu {
+  position: absolute;
+  top: 60px;
+  right: 50px;
+  background-color: $background-tile;
+  border: 1px solid $border;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: center;
+  animation: fadeIn 0.15s ease-in-out;
+}
+
+.menuButton {
+  padding: 8px 12px !important;
+  width: 100%;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

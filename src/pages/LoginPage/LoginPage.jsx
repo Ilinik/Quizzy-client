@@ -24,7 +24,7 @@ const LoginPage = () => {
         <Button
           className="backBtn"
           color="neutral"
-          outline
+          variant="outline"
           onClick={() => navigate('/welcome')}
         >
           Вернуться назад
