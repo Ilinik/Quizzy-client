@@ -207,9 +207,8 @@
 
   &.light {
     color: $text-inactive;
-    background-color: rgba($text-inactive, 0.1);
     &:hover {
-      background-color: rgba($text-inactive, 0.2);
+      background-color: rgba($text-inactive, 0.15);
     }
   }
 

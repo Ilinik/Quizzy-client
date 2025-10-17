@@ -8,11 +8,11 @@ import { observer } from 'mobx-react-lite';
 const MinimalLayout = observer(() => {
   const authStore = useStore().auth;
 
-  useEffect(() => {
-    if (localStorage.getItem('token')) {
-      authStore.checkAuth();
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (localStorage.getItem('token')) {
+  //     authStore.checkAuth();
+  //   }
+  // }, []);
 
   if (authStore.isLoading) {
     return (

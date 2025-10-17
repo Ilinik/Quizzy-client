@@ -4,24 +4,41 @@ import axios from 'axios';
 import { API_URL } from '@/http/index.js';
 
 export class AuthStore {
-  user = {};
-  isAuth = false;
-  isLoading = false;
+  _user = {};
+  _isAuth = false;
+  _isLoading = false;
+  _isRefreshing = false;
 
   constructor() {
     makeAutoObservable(this);
   }
 
+  get isLoading() {
+    return this._isLoading;
+  }
+
+  get isRefreshing() {
+    return this._isRefreshing;
+  }
+
+  get isAuth() {
+    return this._isAuth;
+  }
+
   setAuth(bool) {
-    this.isAuth = bool;
+    this._isAuth = bool;
   }
 
   setUser(user) {
-    this.user = user;
+    this._user = user;
   }
 
   setIsLoading(bool) {
-    this.isLoading = bool;
+    this._isLoading = bool;
+  }
+
+  setIsRefreshing(bool) {
+    this._isRefreshing = bool;
   }
 
   async login(email, password) {
@@ -72,7 +89,10 @@ export class AuthStore {
   }
 
   async checkAuth() {
+    if (this.isRefreshing) return;
+    this.setIsRefreshing(true);
     this.setIsLoading(true);
+
     try {
       const response = await axios.get(`${API_URL}/auth/refresh`, {
         withCredentials: true,
@@ -85,6 +105,7 @@ export class AuthStore {
       console.log(e.response?.data?.message);
     } finally {
       this.setIsLoading(false);
+      this.setIsRefreshing(false);
     }
   }
 }
