@@ -6,12 +6,14 @@ const Button = ({
   color = 'primary', // primary | accent | success | danger | warning | info | neutral
   variant = 'filled', // filled | light | outline
   className,
+  disabled = false,
   ...props
 }) => {
   const buttonClass = clsx(
     styles.button,
     styles[color],
     styles[variant],
+    disabled && styles.disabled,
     className,
   );
 

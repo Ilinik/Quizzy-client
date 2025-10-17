@@ -7,6 +7,7 @@ export class AuthStore {
   _user = {};
   _isAuth = false;
   _isLoading = false;
+  _isLoadingAuth = false;
   _isRefreshing = false;
 
   constructor() {
@@ -15,6 +16,10 @@ export class AuthStore {
 
   get isLoading() {
     return this._isLoading;
+  }
+
+  get isLoadingAuth() {
+    return this._isLoadingAuth;
   }
 
   get isRefreshing() {
@@ -37,39 +42,39 @@ export class AuthStore {
     this._isLoading = bool;
   }
 
+  setIsLoadingAuth(bool) {
+    this._isLoadingAuth = bool;
+  }
+
   setIsRefreshing(bool) {
     this._isRefreshing = bool;
   }
 
   async login(email, password) {
-    this.setIsLoading(true);
+    this.setIsLoadingAuth(true);
     try {
       const response = await AuthService.login(email, password);
-      console.log(response);
       localStorage.setItem('token', response.data.tokens.accessToken);
       this.setAuth(true);
       this.setUser(response.data.user);
-      this.setIsLoading(false);
     } catch (e) {
       console.log(e.response?.data?.message);
     } finally {
-      this.setIsLoading(false);
+      this.setIsLoadingAuth(false);
     }
   }
 
   async registration(name, email, password) {
-    this.setIsLoading(true);
+    this.setIsLoadingAuth(true);
     try {
       const response = await AuthService.registration(name, email, password);
-      console.log(response);
       localStorage.setItem('token', response.data.tokens.accessToken);
       this.setAuth(true);
       this.setUser(response.data.user);
-      this.setIsLoading(false);
     } catch (e) {
       console.log(e.response?.data?.message);
     } finally {
-      this.setIsLoading(false);
+      this.setIsLoadingAuth(false);
     }
   }
 
@@ -80,7 +85,6 @@ export class AuthStore {
       localStorage.removeItem('token');
       this.setAuth(false);
       this.setUser({});
-      this.setIsLoading(false);
     } catch (e) {
       console.log(e.response?.data?.message);
     } finally {
