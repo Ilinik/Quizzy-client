@@ -1,5 +1,9 @@
 @use '@/assets/styles/variables' as *;
 
+.profileWrapper {
+  position: relative;
+}
+
 .profile {
   display: flex;
   align-items: center;

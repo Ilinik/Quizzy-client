@@ -3,15 +3,15 @@ import styles from './Button.module.scss';
 
 const Button = ({
   children,
-  color = 'primary', // primary | accent | success | neutral
-  outline = false,
+  color = 'primary', // primary | accent | success | danger | warning | info | neutral
+  variant = 'filled', // filled | light | outline
   className,
   ...props
 }) => {
   const buttonClass = clsx(
     styles.button,
     styles[color],
-    outline && styles.outline,
+    styles[variant],
     className,
   );
 

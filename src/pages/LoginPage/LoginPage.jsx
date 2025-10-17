@@ -1,6 +1,7 @@
 import Button from '@/components/commons/Button/Button.jsx';
 import { Link, useNavigate } from 'react-router-dom';
 import '@/assets/styles/auth.scss';
+import LoginForm from '@/components/commons/LoginForm/LoginForm.jsx';
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -11,19 +12,7 @@ const LoginPage = () => {
         <h1 className="title">Войти в аккаунт</h1>
         <p className="subtitle">Введите свои данные для входа</p>
 
-        <form className="form">
-          <input type="email" placeholder="Email" className="input" />
-          <input type="password" placeholder="Пароль" className="input" />
-
-          <Button
-            color="primary"
-            type="submit"
-            className="cta"
-            onClick={(e) => e.preventDefault()}
-          >
-            Войти
-          </Button>
-        </form>
+        <LoginForm />
 
         <p className="switch">
           Нет аккаунта?{' '}
@@ -35,7 +24,7 @@ const LoginPage = () => {
         <Button
           className="backBtn"
           color="neutral"
-          outline
+          variant="outline"
           onClick={() => navigate('/welcome')}
         >
           Вернуться назад

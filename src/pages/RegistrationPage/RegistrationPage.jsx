@@ -1,6 +1,7 @@
 import Button from '@/components/commons/Button/Button.jsx';
 import { Link, useNavigate } from 'react-router-dom';
 import '@/assets/styles/auth.scss';
+import RegistrationForm from '@/components/commons/RegistrationForm/RegistrationForm.jsx';
 
 const RegistrationPage = () => {
   const navigate = useNavigate();
@@ -11,20 +12,7 @@ const RegistrationPage = () => {
         <h1 className="title">Создать аккаунт</h1>
         <p className="subtitle">Введите данные для регистрации</p>
 
-        <form className="form">
-          <input type="text" placeholder="Имя" className="input" />
-          <input type="email" placeholder="Email" className="input" />
-          <input type="password" placeholder="Пароль" className="input" />
-
-          <Button
-            color="primary"
-            type="submit"
-            className="cta"
-            onClick={(e) => e.preventDefault()}
-          >
-            Зарегистрироваться
-          </Button>
-        </form>
+        <RegistrationForm />
 
         <p className="switch">
           Уже есть аккаунт?{' '}
@@ -36,7 +24,7 @@ const RegistrationPage = () => {
         <Button
           className="backBtn"
           color="neutral"
-          outline
+          variant="outline"
           onClick={() => navigate('/welcome')}
         >
           Вернуться назад

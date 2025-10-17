@@ -26,7 +26,11 @@ export const Header = observer(() => {
         </>
       ) : (
         <div className={styles.buttons}>
-          <Button color="neutral" outline onClick={() => navigate('/login')}>
+          <Button
+            color="neutral"
+            variant="outline"
+            onClick={() => navigate('/login')}
+          >
             Войти
           </Button>
           <Button onClick={() => navigate('/registration')}>
