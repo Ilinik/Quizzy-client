@@ -2,8 +2,10 @@ import { Outlet } from 'react-router-dom';
 import styles from './MinimalLayout.module.scss';
 import { useStore } from '@/hooks/useStore.js';
 import { useEffect } from 'react';
+import Loader from '@/components/commons/Loader/Loader.jsx';
+import { observer } from 'mobx-react-lite';
 
-const MinimalLayout = () => {
+const MinimalLayout = observer(() => {
   const authStore = useStore().auth;
 
   useEffect(() => {
@@ -11,6 +13,14 @@ const MinimalLayout = () => {
       authStore.checkAuth();
     }
   }, []);
+
+  if (authStore.isLoading) {
+    return (
+      <div className="loaderWrapper">
+        <Loader size="lg" />
+      </div>
+    );
+  }
 
   return (
     <div className="container">
@@ -21,6 +31,6 @@ const MinimalLayout = () => {
       </main>
     </div>
   );
-};
+});
 
 export default MinimalLayout;

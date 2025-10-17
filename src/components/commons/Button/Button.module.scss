@@ -201,14 +201,15 @@
     border-color: $text-inactive;
     color: #fff;
     &:hover {
-      background-color: darken($text-inactive, 10%);
+      background-color: rgba($text-inactive, 0.8);
     }
   }
 
   &.light {
     color: $text-inactive;
+    background-color: rgba($text-inactive, 0.1);
     &:hover {
-      background-color: rgba($text-inactive, 0.15);
+      background-color: rgba($text-inactive, 0.2);
     }
   }
 
