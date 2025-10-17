@@ -201,7 +201,7 @@
     border-color: $text-inactive;
     color: #fff;
     &:hover {
-      background-color: darken($text-inactive, 10%);
+      background-color: rgba($text-inactive, 0.8);
     }
   }
 
@@ -219,4 +219,13 @@
       background-color: rgba($text-inactive, 0.1);
     }
   }
+}
+
+.disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
+  transform: none !important;
+  box-shadow: none !important;
+  filter: grayscale(0.1);
 }

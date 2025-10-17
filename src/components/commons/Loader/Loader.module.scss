@@ -1,0 +1,63 @@
+@use '@/assets/styles/variables' as *;
+
+.loader {
+  display: inline-block;
+  border-radius: 50%;
+  border-style: solid;
+  border-top-color: transparent;
+  border-right-color: transparent;
+  border-bottom-color: transparent;
+  animation: spin 0.8s linear infinite;
+}
+
+.sm {
+  width: 16px;
+  height: 16px;
+  border-width: 2px;
+}
+
+.md {
+  width: 28px;
+  height: 28px;
+  border-width: 3px;
+}
+
+.lg {
+  width: 44px;
+  height: 44px;
+  border-width: 4px;
+}
+
+.primary {
+  border-left-color: $primary;
+}
+
+.accent {
+  border-left-color: $accent;
+}
+
+.success {
+  border-left-color: $success;
+}
+
+.danger {
+  border-left-color: $danger;
+}
+
+.warning {
+  border-left-color: $warning;
+}
+
+.info {
+  border-left-color: $info;
+}
+
+.neutral {
+  border-left-color: $text-inactive;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
