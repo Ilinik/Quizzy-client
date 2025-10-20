@@ -1,10 +1,14 @@
 import { useState, useRef, useEffect } from 'react';
 import styles from './Profile.module.scss';
 import DropdownMenu from '@/components/commons/DropdownMenu/DropdownMenu.jsx';
+import { useStore } from '@/hooks/useStore.js';
+import { observer } from 'mobx-react-lite';
 
-export const Profile = () => {
+export const Profile = observer(() => {
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef(null);
+
+  const authStore = useStore().auth;
 
   const handleToggleMenu = () => {
     setMenuOpen((prev) => !prev);
@@ -28,10 +32,12 @@ export const Profile = () => {
           alt="profile"
           className={styles.profilePicture}
         />
-        <p className={styles.profileName}>Michael Clifford</p>
+        <p className={styles.profileName}>
+          {authStore.user?.name || 'Профиль'}
+        </p>
       </div>
 
       {menuOpen && <DropdownMenu />}
     </div>
   );
-};
+});

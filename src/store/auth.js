@@ -30,6 +30,10 @@ export class AuthStore {
     return this._isAuth;
   }
 
+  get user() {
+    return this._user;
+  }
+
   setAuth(bool) {
     this._isAuth = bool;
   }

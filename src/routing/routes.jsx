@@ -13,6 +13,7 @@ import RegistrationPage from '@/pages/RegistrationPage/RegistrationPage.jsx';
 import LoginPage from '@/pages/LoginPage/LoginPage.jsx';
 import PrivateRoute from '@/routing/PrivateRoute.jsx';
 import PublicRoute from '@/routing/PublicRoute.jsx';
+import CreateQuizPage from '@/pages/CreateQuizPage/CreateQuizPage.jsx';
 
 export const router = createBrowserRouter([
   {
@@ -33,6 +34,12 @@ export const router = createBrowserRouter([
   {
     element: <MinimalLayout />,
     children: [
+      {
+        element: <PrivateRoute />,
+        children: [
+          { path: staticLinks.createQuiz, element: <CreateQuizPage /> },
+        ],
+      },
       {
         element: <PublicRoute />,
         children: [

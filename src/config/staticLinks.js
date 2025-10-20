@@ -4,4 +4,5 @@ export const staticLinks = {
   welcome: '/welcome',
   register: '/registration',
   login: '/login',
+  createQuiz: '/create-quiz',
 };

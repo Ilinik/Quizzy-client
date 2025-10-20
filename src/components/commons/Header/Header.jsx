@@ -7,7 +7,7 @@ import { useStore } from '@/hooks/useStore.js';
 import Button from '@/components/commons/Button/Button.jsx';
 import { useNavigate } from 'react-router-dom';
 
-export const Header = observer(() => {
+export const Header = observer(({ showSearch = true }) => {
   const authStore = useStore().auth;
   const navigate = useNavigate();
   return (
@@ -18,10 +18,13 @@ export const Header = observer(() => {
         width={140}
         height={80}
         className={styles.logo}
+        onClick={() => {
+          navigate('/');
+        }}
       />
       {authStore.isAuth ? (
         <>
-          <Search />
+          {showSearch && <Search />}
           <Profile user={authStore.user} />
         </>
       ) : (
