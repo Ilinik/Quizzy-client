@@ -4,9 +4,10 @@ import { observer } from 'mobx-react-lite';
 import { useStore } from '@/hooks/useStore.js';
 
 import styles from './CreateQuizForm.module.scss';
+import { ICON_MAP } from '@/constants/icons.js';
 
 const CreateQuizForm = observer(() => {
-  const quizStore = useStore().quiz;
+  // const quizStore = useStore().quiz;
   const formStore = useStore().form;
   const navigate = useNavigate();
   const formData = formStore._quizFormData;
@@ -18,10 +19,19 @@ const CreateQuizForm = observer(() => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    quizStore.addQuiz(formData);
+    // quizStore.addQuiz(formData);
     formStore.reset();
     navigate('/quizzes');
   };
+
+  const colors = [
+    { name: 'primary', value: '#3b82f6' },
+    { name: 'accent', value: '#59e5ff' },
+    { name: 'success', value: '#22b07d' },
+    { name: 'warning', value: '#fbbf24' },
+    { name: 'danger', value: '#ef4444' },
+    { name: 'info', value: '#3b82f6' },
+  ];
 
   return (
     <form className={styles.form}>
@@ -50,14 +60,49 @@ const CreateQuizForm = observer(() => {
 
       <div className={styles.row}>
         <div className={styles.field}>
-          <label>Эмодзи</label>
-          <select name="emoji" value={formData.emoji} onChange={handleChange}>
-            <option>💻</option>
-            <option>🎨</option>
-            <option>🧠</option>
-            <option>🚀</option>
-            <option>📚</option>
-          </select>
+          <label>Иконка</label>
+          <div className={styles.iconGrid}>
+            {Object.keys(ICON_MAP).map((iconName) => {
+              const Icon = ICON_MAP[iconName];
+              const isSelected = formData.emoji === iconName;
+
+              return (
+                <button
+                  key={iconName}
+                  type="button"
+                  onClick={() => formStore.setField('emoji', iconName)}
+                  className={`${styles.iconButton} ${isSelected ? styles.selected : ''}`}
+                >
+                  <Icon
+                    size={28}
+                    strokeWidth={2}
+                    color={isSelected ? '#2563eb' : '#374151'}
+                  />
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        <div className={styles.field}>
+          <label>Цвет иконки</label>
+          <div className={styles.colorGrid}>
+            {colors.map((color) => {
+              const isSelected = formData.color === color.name;
+              return (
+                <button
+                  key={color.name}
+                  type="button"
+                  onClick={() => formStore.setField('color', color.name)}
+                  className={`${styles.colorButton} ${
+                    isSelected ? styles.selectedColor : ''
+                  }`}
+                  style={{ backgroundColor: color.value }}
+                  title={color.name}
+                />
+              );
+            })}
+          </div>
         </div>
 
         <div className={styles.field}>

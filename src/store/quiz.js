@@ -36,7 +36,8 @@ export class QuizStore {
       questionsCount: 0,
       difficulty: quizData.difficulty,
       category: quizData.category,
-      image: quizData.emoji,
+      emoji: quizData.emoji,
+      color: quizData.color,
     };
     this._quizzes.push(newQuiz);
   }

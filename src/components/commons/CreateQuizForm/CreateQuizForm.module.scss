@@ -1,3 +1,5 @@
+@use '@/assets/styles/variables' as *;
+
 .form {
   display: flex;
   flex-direction: column;
@@ -45,4 +47,59 @@
   justify-content: flex-end;
   gap: 16px;
   margin-top: 16px;
+}
+
+.iconGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.iconButton {
+  background: #f9fafc;
+  border: 1px solid $border;
+  border-radius: 8px;
+  padding: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: $border-light;
+  }
+
+  svg {
+    display: block;
+    margin: auto;
+  }
+}
+
+.selected {
+  border-color: $primary;
+}
+
+.colorGrid {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+.colorButton {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
+.selectedColor {
+  border-color: $text;
+  box-shadow:
+    0 0 0 2px white,
+    0 0 0 4px $text;
 }

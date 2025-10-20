@@ -5,6 +5,7 @@ export class FormStore {
     title: '',
     description: '',
     emoji: '💻',
+    color: 'primary',
     difficulty: 'EASY',
     category: 'PROGRAMMING',
   };
