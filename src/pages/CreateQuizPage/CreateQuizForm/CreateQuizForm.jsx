@@ -30,11 +30,22 @@ const CreateQuizForm = observer(() => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const data = toJS(formStore._quizFormData);
-    console.log(data);
-    await quizStore.createQuiz(data);
-    formStore.reset();
-    navigate('/quizzes');
+    const data = toJS(formStore.quizFormData);
+
+    try {
+      const createdQuiz = await quizStore.createQuiz(data);
+      formStore.reset();
+
+      const quizId = createdQuiz.quiz.id;
+
+      if (quizId) {
+        navigate(`/create-quiz/${quizId}/questions`);
+      } else {
+        console.error('Не удалось получить id квиза');
+      }
+    } catch (error) {
+      console.error('Ошибка при создании квиза:', error);
+    }
   };
 
   return (
