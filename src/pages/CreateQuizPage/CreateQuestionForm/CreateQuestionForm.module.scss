@@ -1,3 +1,5 @@
+@use '@/assets/styles/variables' as *;
+
 .form {
   display: flex;
   flex-direction: column;
@@ -10,13 +12,11 @@
   gap: 8px;
 
   label {
-    font-weight: 600;
+    font-weight: 500;
     color: $text;
   }
 
-  input,
-  select,
-  textarea {
+  select {
     background: $input-bg;
     border: 1px solid $input-border;
     border-radius: 8px;

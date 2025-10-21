@@ -1,12 +1,12 @@
 import { WhiteTile } from '../../components/commons/WhiteTile/WhiteTile';
 import { observer } from 'mobx-react-lite';
 import QuizCard from '@/components/commons/QuizCard/QuizCard.jsx';
-
-import styles from './QuizzesPage.module.scss';
 import { useStore } from '@/hooks/useStore.js';
 import Button from '@/components/commons/Button/Button.jsx';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
+
+import styles from './QuizzesPage.module.scss';
 
 const QuizzesPage = observer(() => {
   const quizStore = useStore().quiz;
@@ -41,7 +41,7 @@ const QuizzesPage = observer(() => {
             <QuizCard key={quiz.id} quiz={quiz} />
           ))
         ) : (
-          <div className={styles.quizStatus}>Квизов нет</div>
+          <div className={styles.quizStatus}>Не удалось найти квизы</div>
         )}
       </div>
     </WhiteTile>

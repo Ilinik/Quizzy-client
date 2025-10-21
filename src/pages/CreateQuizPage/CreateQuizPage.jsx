@@ -1,7 +1,7 @@
 import { Header } from '@/components/commons/Header/Header.jsx';
 
 import styles from './CreateQuizPage.module.scss';
-import CreateQuizForm from '@/components/commons/CreateQuizForm/CreateQuizForm.jsx';
+import CreateQuizForm from '@/pages/CreateQuizPage/CreateQuizForm/CreateQuizForm.jsx';
 
 const CreateQuizPage = () => {
   return (

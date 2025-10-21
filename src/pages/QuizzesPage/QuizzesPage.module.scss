@@ -4,7 +4,9 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 24px;
-  justify-items: center;
+  align-items: center;
+  margin-top: 20px;
+  min-height: 300px;
 }
 
 .titleWrapper {
@@ -37,7 +39,12 @@
 }
 
 .quizStatus {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-size: 24px;
   font-weight: 700;
-  display: flex;
+  color: $text;
+  min-height: 200px;
 }

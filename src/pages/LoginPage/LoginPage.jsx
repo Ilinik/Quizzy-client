@@ -1,7 +1,7 @@
 import Button from '@/components/commons/Button/Button.jsx';
 import { Link, useNavigate } from 'react-router-dom';
 import '@/assets/styles/auth.scss';
-import LoginForm from '@/components/commons/LoginForm/LoginForm.jsx';
+import LoginForm from '@/pages/LoginPage/LoginForm/LoginForm.jsx';
 
 const LoginPage = () => {
   const navigate = useNavigate();
