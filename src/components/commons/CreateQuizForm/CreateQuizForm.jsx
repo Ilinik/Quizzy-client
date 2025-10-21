@@ -2,11 +2,12 @@ import Button from '@/components/commons/Button/Button.jsx';
 import { useNavigate } from 'react-router-dom';
 import { observer } from 'mobx-react-lite';
 import { useStore } from '@/hooks/useStore.js';
-
-import styles from './CreateQuizForm.module.scss';
 import { ICON_MAP } from '@/constants/icons.js';
 import { useEffect } from 'react';
 import { toJS } from 'mobx';
+import { colors } from '@/constants/colors.js';
+
+import styles from './CreateQuizForm.module.scss';
 
 const CreateQuizForm = observer(() => {
   const formStore = useStore().form;
@@ -32,14 +33,6 @@ const CreateQuizForm = observer(() => {
     formStore.reset();
     navigate('/quizzes');
   };
-
-  const colors = [
-    { name: 'primary', value: '#3b82f6' },
-    { name: 'accent', value: '#59e5ff' },
-    { name: 'success', value: '#22b07d' },
-    { name: 'warning', value: '#fbbf24' },
-    { name: 'danger', value: '#ef4444' },
-  ];
 
   return (
     <form className={styles.form}>
@@ -100,6 +93,7 @@ const CreateQuizForm = observer(() => {
               return (
                 <button
                   key={color.name}
+                  type="button"
                   onClick={() => formStore.setField('color', color.name)}
                   className={`${styles.colorButton} ${
                     isSelected ? styles.selectedColor : ''

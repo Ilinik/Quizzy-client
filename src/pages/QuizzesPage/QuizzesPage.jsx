@@ -36,9 +36,13 @@ const QuizzesPage = observer(() => {
         </div>
       </div>
       <div className={styles.quizzesGrid}>
-        {quizStore._quizzes.map((quiz) => (
-          <QuizCard key={quiz.id} quiz={quiz} />
-        ))}
+        {quizStore.quizzes.length > 0 ? (
+          quizStore.quizzes.map((quiz) => (
+            <QuizCard key={quiz.id} quiz={quiz} />
+          ))
+        ) : (
+          <div className={styles.quizStatus}>Квизов нет</div>
+        )}
       </div>
     </WhiteTile>
   );
