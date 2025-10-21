@@ -4,7 +4,7 @@ export class FormStore {
   _quizFormData = {
     title: '',
     description: '',
-    emoji: '',
+    emoji: 'Laptop',
     color: 'primary',
     difficulty: 'EASY',
     category: 'PROGRAMMING',
@@ -13,6 +13,10 @@ export class FormStore {
 
   constructor() {
     makeAutoObservable(this);
+  }
+
+  get quizFormData() {
+    return this._quizFormData;
   }
 
   setField(name, value) {
@@ -27,7 +31,8 @@ export class FormStore {
     this._quizFormData = {
       title: '',
       description: '',
-      emoji: '',
+      emoji: 'Laptop',
+      color: 'primary',
       difficulty: 'EASY',
       category: 'PROGRAMMING',
       creatorId: null,

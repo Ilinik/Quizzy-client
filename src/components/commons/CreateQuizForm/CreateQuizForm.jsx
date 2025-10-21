@@ -6,6 +6,7 @@ import { useStore } from '@/hooks/useStore.js';
 import styles from './CreateQuizForm.module.scss';
 import { ICON_MAP } from '@/constants/icons.js';
 import { useEffect } from 'react';
+import { toJS } from 'mobx';
 
 const CreateQuizForm = observer(() => {
   const formStore = useStore().form;
@@ -15,19 +16,19 @@ const CreateQuizForm = observer(() => {
   const formData = formStore._quizFormData;
 
   useEffect(() => {
-    if (authStore._user?.id) {
-      formStore.setCreator(authStore._user.id);
-    }
-  }, [authStore._user]);
+    if (authStore._user?.id) formStore.setCreator(authStore._user.id);
+  }, [authStore._user?.id]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     formStore.setField(name, value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    quizStore.createQuiz(formData);
+    const data = toJS(formStore._quizFormData);
+    console.log(data);
+    await quizStore.createQuiz(data);
     formStore.reset();
     navigate('/quizzes');
   };
@@ -38,7 +39,6 @@ const CreateQuizForm = observer(() => {
     { name: 'success', value: '#22b07d' },
     { name: 'warning', value: '#fbbf24' },
     { name: 'danger', value: '#ef4444' },
-    { name: 'info', value: '#3b82f6' },
   ];
 
   return (
@@ -100,7 +100,6 @@ const CreateQuizForm = observer(() => {
               return (
                 <button
                   key={color.name}
-                  type="button"
                   onClick={() => formStore.setField('color', color.name)}
                   className={`${styles.colorButton} ${
                     isSelected ? styles.selectedColor : ''
@@ -144,8 +143,8 @@ const CreateQuizForm = observer(() => {
 
       <div className={styles.actions}>
         <Button
-          onClick={(e) => {
-            handleSubmit(e);
+          onClick={async (e) => {
+            await handleSubmit(e);
           }}
         >
           Создать квиз
