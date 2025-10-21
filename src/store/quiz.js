@@ -1,4 +1,5 @@
 import { makeAutoObservable } from 'mobx';
+import QuizService from '@/services/QuizService.js';
 
 export class QuizStore {
   _quizzes = [];
@@ -6,22 +7,14 @@ export class QuizStore {
 
   constructor() {
     makeAutoObservable(this);
-
-    this._quizzes = [
-      {
-        id: 1,
-        title: 'JavaScript Basics',
-        description: 'Проверьте свои знания основ JavaScript',
-        questionsCount: 15,
-        difficulty: 'Легкий',
-        category: 'Программирование',
-        image: '🚀',
-      },
-    ];
   }
 
   get isLoading() {
     return this._isLoading;
+  }
+
+  get quizzes() {
+    return this._quizzes;
   }
 
   setIsLoading(bool) {
@@ -40,5 +33,32 @@ export class QuizStore {
       color: quizData.color,
     };
     this._quizzes.push(newQuiz);
+  }
+
+  async createQuiz(quizData) {
+    this._isLoading = true;
+    try {
+      const createdQuiz = await QuizService.createQuiz(quizData);
+      this._quizzes.push(createdQuiz);
+      return createdQuiz;
+    } catch (e) {
+      console.log('Quiz creation error: ', e);
+      throw e;
+    } finally {
+      this._isLoading = false;
+    }
+  }
+
+  async fetchQuizzes() {
+    this._isLoading = true;
+    try {
+      const quizzes = await QuizService.fetchQuizzes();
+      this._quizzes = quizzes;
+    } catch (e) {
+      console.log('Fetch quizzes error', e);
+      throw e;
+    } finally {
+      this._isLoading = false;
+    }
   }
 }

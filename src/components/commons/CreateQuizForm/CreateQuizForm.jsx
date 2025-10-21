@@ -5,12 +5,20 @@ import { useStore } from '@/hooks/useStore.js';
 
 import styles from './CreateQuizForm.module.scss';
 import { ICON_MAP } from '@/constants/icons.js';
+import { useEffect } from 'react';
 
 const CreateQuizForm = observer(() => {
-  // const quizStore = useStore().quiz;
   const formStore = useStore().form;
+  const quizStore = useStore().quiz;
+  const authStore = useStore().auth;
   const navigate = useNavigate();
   const formData = formStore._quizFormData;
+
+  useEffect(() => {
+    if (authStore._user?.id) {
+      formStore.setCreator(authStore._user.id);
+    }
+  }, [authStore._user]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -19,7 +27,7 @@ const CreateQuizForm = observer(() => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // quizStore.addQuiz(formData);
+    quizStore.createQuiz(formData);
     formStore.reset();
     navigate('/quizzes');
   };

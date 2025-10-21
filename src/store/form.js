@@ -4,10 +4,11 @@ export class FormStore {
   _quizFormData = {
     title: '',
     description: '',
-    emoji: '💻',
+    emoji: '',
     color: 'primary',
     difficulty: 'EASY',
     category: 'PROGRAMMING',
+    creatorId: null,
   };
 
   constructor() {
@@ -18,13 +19,18 @@ export class FormStore {
     this._quizFormData[name] = value;
   }
 
+  setCreator(userId) {
+    this._quizFormData.creatorId = userId;
+  }
+
   reset() {
     this._quizFormData = {
       title: '',
       description: '',
-      emoji: '💻',
+      emoji: '',
       difficulty: 'EASY',
       category: 'PROGRAMMING',
+      creatorId: null,
     };
   }
 }

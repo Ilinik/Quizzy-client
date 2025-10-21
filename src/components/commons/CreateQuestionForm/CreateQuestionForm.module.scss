@@ -1,0 +1,57 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  label {
+    font-weight: 600;
+    color: $text;
+  }
+
+  input,
+  select,
+  textarea {
+    background: $input-bg;
+    border: 1px solid $input-border;
+    border-radius: 8px;
+    padding: 10px;
+    font-size: 14px;
+    outline: none;
+    transition: border 0.2s ease;
+
+    &:focus {
+      border-color: $input-focus;
+    }
+  }
+}
+
+.optionRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+
+  input[type='text'] {
+    flex: 1;
+  }
+
+  .radioLabel {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 13px;
+    color: $text-secondary;
+  }
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+}

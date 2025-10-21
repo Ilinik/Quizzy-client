@@ -6,10 +6,15 @@ import styles from './QuizzesPage.module.scss';
 import { useStore } from '@/hooks/useStore.js';
 import Button from '@/components/commons/Button/Button.jsx';
 import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
 const QuizzesPage = observer(() => {
   const quizStore = useStore().quiz;
   const navigate = useNavigate();
+
+  useEffect(() => {
+    quizStore.fetchQuizzes();
+  }, []);
 
   return (
     <WhiteTile>
