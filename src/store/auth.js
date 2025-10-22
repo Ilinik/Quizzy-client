@@ -12,6 +12,7 @@ export class AuthStore {
 
   constructor() {
     makeAutoObservable(this);
+    this.checkAuth();
   }
 
   get isLoading() {
@@ -55,7 +56,7 @@ export class AuthStore {
   }
 
   async login(email, password) {
-    this.setIsLoadingAuth(true);
+    this._isLoadingAuth = true;
     try {
       const response = await AuthService.login(email, password);
       localStorage.setItem('token', response.data.tokens.accessToken);
@@ -64,12 +65,12 @@ export class AuthStore {
     } catch (e) {
       console.log(e.response?.data?.message);
     } finally {
-      this.setIsLoadingAuth(false);
+      this._isLoadingAuth = false;
     }
   }
 
   async registration(name, email, password) {
-    this.setIsLoadingAuth(true);
+    this._isLoadingAuth = true;
     try {
       const response = await AuthService.registration(name, email, password);
       localStorage.setItem('token', response.data.tokens.accessToken);
@@ -78,12 +79,12 @@ export class AuthStore {
     } catch (e) {
       console.log(e.response?.data?.message);
     } finally {
-      this.setIsLoadingAuth(false);
+      this._isLoadingAuth = false;
     }
   }
 
   async logout() {
-    this.setIsLoading(true);
+    this._isLoading = true;
     try {
       const response = await AuthService.logout();
       localStorage.removeItem('token');
@@ -92,14 +93,14 @@ export class AuthStore {
     } catch (e) {
       console.log(e.response?.data?.message);
     } finally {
-      this.setIsLoading(false);
+      this._isLoading = false;
     }
   }
 
   async checkAuth() {
-    if (this.isRefreshing) return;
-    this.setIsRefreshing(true);
-    this.setIsLoading(true);
+    if (this.isRefreshing || !localStorage.getItem('token')) return;
+    this._isRefreshing = true;
+    this._isLoading = true;
 
     try {
       const response = await axios.get(`${API_URL}/auth/refresh`, {
@@ -112,8 +113,8 @@ export class AuthStore {
     } catch (e) {
       console.log(e.response?.data?.message);
     } finally {
-      this.setIsLoading(false);
-      this.setIsRefreshing(false);
+      this._isRefreshing = false;
+      this._isLoading = false;
     }
   }
 }
