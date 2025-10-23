@@ -15,6 +15,7 @@ import PrivateRoute from '@/routing/PrivateRoute.jsx';
 import PublicRoute from '@/routing/PublicRoute.jsx';
 import CreateQuizPage from '@/pages/CreateQuizPage/CreateQuizPage.jsx';
 import CreateQuestionPage from '@/pages/CreateQuestionPage/CreateQuestionPage.jsx';
+import MyQuizzesPage from '@/pages/MyQuizzesPage/MyQuizzesPage.jsx';
 
 export const router = createBrowserRouter([
   {
@@ -25,6 +26,7 @@ export const router = createBrowserRouter([
         children: [
           { path: staticLinks.main, element: <HomePage /> },
           { path: staticLinks.quizzes, element: <QuizzesPage /> },
+          { path: staticLinks.myQuizzes, element: <MyQuizzesPage /> },
           { path: dynamicLinks.quiz, element: <QuizPage /> },
           { path: dynamicLinks.result, element: <ResultPage /> },
         ],
