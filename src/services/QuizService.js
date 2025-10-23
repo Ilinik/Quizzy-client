@@ -6,8 +6,18 @@ export default class QuizService {
     return response.data;
   }
 
+  static async createUnpublishedQuiz(data) {
+    const response = await $api.post('/quiz/unpublished', data);
+    return response.data;
+  }
+
   static async fetchQuizzes() {
     const response = await $api.get('/quiz/quizzes');
+    return response.data;
+  }
+
+  static async fetchUnpublishedQuizzes() {
+    const response = await $api.get('/quiz/quizzes-unpublished');
     return response.data;
   }
 
