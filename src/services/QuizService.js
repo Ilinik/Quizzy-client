@@ -17,7 +17,9 @@ export default class QuizService {
   }
 
   static async fetchUnpublishedQuizzes() {
-    const response = await $api.get('/quiz/quizzes-unpublished');
+    const response = await $api.get('/quiz/quizzes-unpublished', {
+      headers: { authorization: localStorage.getItem('token') },
+    });
     return response.data;
   }
 

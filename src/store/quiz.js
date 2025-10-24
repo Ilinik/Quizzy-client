@@ -3,6 +3,7 @@ import QuizService from '@/services/QuizService.js';
 
 export class QuizStore {
   _quizzes = [];
+  _unpublishedQuizzes = [];
   _isLoading = false;
 
   constructor() {
@@ -15,6 +16,10 @@ export class QuizStore {
 
   get quizzes() {
     return this._quizzes;
+  }
+
+  get unpublishedQuizzes() {
+    return this._unpublishedQuizzes;
   }
 
   setIsLoading(bool) {
@@ -66,9 +71,9 @@ export class QuizStore {
     this._isLoading = true;
     try {
       const quizzes = await QuizService.fetchUnpublishedQuizzes();
-      this._quizzes = quizzes;
+      this._unpublishedQuizzes = quizzes;
     } catch (e) {
-      console.log('Fetch quizzes error', e);
+      console.log('Fetch unpublished quizzes error', e);
       throw e;
     } finally {
       this._isLoading = false;
