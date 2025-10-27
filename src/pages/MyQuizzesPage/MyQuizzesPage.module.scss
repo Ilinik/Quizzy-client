@@ -32,12 +32,6 @@
   color: $text-inactive;
 }
 
-.rightSide {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
 .quizStatus {
   grid-column: 1 / -1;
   display: flex;

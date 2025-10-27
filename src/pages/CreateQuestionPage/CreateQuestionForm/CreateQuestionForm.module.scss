@@ -1,0 +1,82 @@
+@use '@/assets/styles/variables' as *;
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.questions {
+  display: grid;
+  align-items: center;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.radio {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--color-border, #4b5563);
+  border-radius: 50%;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-block;
+  flex-shrink: 0;
+
+  &:hover {
+    border-color: var(--color-accent, #60a5fa);
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.25);
+  }
+
+  &:checked {
+    border-color: var(--color-accent, #3b82f6);
+    background-color: var(--color-accent, #3b82f6);
+  }
+
+  &:checked::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 6px;
+    height: 6px;
+    background: white;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.2s ease;
+  }
+}
+
+.radioLabel {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.radioText {
+  font-size: 14px;
+  font-weight: 500;
+  color: $text;
+}
+
+.buttons {
+  align-self: flex-end;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.completeButton {
+  margin-top: 10px;
+  max-width: 250px;
+  width: 100%;
+  align-self: center;
+}

@@ -1,7 +1,7 @@
 import Button from '@/components/commons/Button/Button.jsx';
 import { Link, useNavigate } from 'react-router-dom';
 import '@/assets/styles/auth.scss';
-import RegistrationForm from '@/components/commons/RegistrationForm/RegistrationForm.jsx';
+import RegistrationForm from '@/pages/RegistrationPage/RegistrationForm/RegistrationForm.jsx';
 
 const RegistrationPage = () => {
   const navigate = useNavigate();

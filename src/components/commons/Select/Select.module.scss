@@ -1,0 +1,34 @@
+@use '@/assets/styles/variables' as *;
+
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+}
+
+.label {
+  font-weight: 500;
+  color: $text;
+}
+
+.select {
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-size: 15px;
+  background-color: #fff;
+  transition: border-color 0.2s ease;
+
+  &:focus {
+    border-color: $primary;
+    outline: none;
+  }
+
+  &:disabled {
+    background-color: $background-tile;
+    color: $text-inactive;
+    cursor: not-allowed;
+  }
+}

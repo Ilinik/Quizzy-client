@@ -1,83 +1,82 @@
 import { makeAutoObservable } from 'mobx';
+import QuizService from '@/services/QuizService.js';
 
 export class QuizStore {
-  quizzes = [];
-  isLoading = false;
+  _quizzes = [];
+  _unpublishedQuizzes = [];
+  _isLoading = false;
 
   constructor() {
     makeAutoObservable(this);
-
-    this.quizzes = [
-      {
-        id: 1,
-        title: 'JavaScript Basics',
-        description: 'Проверьте свои знания основ JavaScript',
-        questionsCount: 15,
-        difficulty: 'Легкий',
-        category: 'Программирование',
-        image: '🚀',
-      },
-      {
-        id: 2,
-        title: 'React Framework',
-        description: 'Тест на знание React и его экосистемы',
-        questionsCount: 20,
-        difficulty: 'Средний',
-        category: 'Программирование',
-        image: '⚛️',
-      },
-      {
-        id: 3,
-        title: 'CSS & Design',
-        description: 'Проверьте знания CSS и веб-дизайна',
-        questionsCount: 12,
-        difficulty: 'Легкий',
-        category: 'Дизайн',
-        image: '🎨',
-      },
-      {
-        id: 4,
-        title: 'TypeScript',
-        description: 'Углублённый тест по TypeScript',
-        questionsCount: 18,
-        difficulty: 'Сложный',
-        category: 'Программирование',
-        image: '📘',
-      },
-      {
-        id: 5,
-        title: 'Web Security',
-        description: 'Основы безопасности веб-приложений',
-        questionsCount: 10,
-        difficulty: 'Средний',
-        category: 'Безопасность',
-        image: '🔒',
-      },
-      {
-        id: 6,
-        title: 'Node.js',
-        description: 'Backend разработка с Node.js',
-        questionsCount: 16,
-        difficulty: 'Средний',
-        category: 'Программирование',
-        image: '🟢',
-      },
-    ];
   }
 
-  get totalQuizzes() {
-    return this.quizzes.length;
+  get isLoading() {
+    return this._isLoading;
   }
 
-  setIsLoading(val) {
-    this.isLoading = val;
+  get quizzes() {
+    return this._quizzes;
   }
 
-  addQuiz(quiz) {
-    this.quizzes = [...this.quizzes, quiz];
+  get unpublishedQuizzes() {
+    return this._unpublishedQuizzes;
   }
 
-  setQuizzes(quizzes) {
-    this.quizzes = quizzes;
+  setIsLoading(bool) {
+    this._isLoading = bool;
+  }
+
+  async createQuiz(quizData) {
+    this._isLoading = true;
+    try {
+      const createdQuiz = await QuizService.createQuiz(quizData);
+      this._quizzes.push(createdQuiz);
+      return createdQuiz;
+    } catch (e) {
+      console.log('Quiz creation error: ', e);
+      throw e;
+    } finally {
+      this._isLoading = false;
+    }
+  }
+
+  async createUnpublishedQuiz(quizData) {
+    this._isLoading = true;
+    try {
+      const createdQuiz = await QuizService.createUnpublishedQuiz(quizData);
+      this._quizzes.push(createdQuiz);
+      return createdQuiz;
+    } catch (e) {
+      console.log('Quiz creation error: ', e);
+      throw e;
+    } finally {
+      this._isLoading = false;
+    }
+  }
+
+  async fetchQuizzes() {
+    this._isLoading = true;
+    try {
+      const quizzes = await QuizService.fetchQuizzes();
+      this._quizzes = quizzes;
+    } catch (e) {
+      console.log('Fetch quizzes error', e);
+      throw e;
+    } finally {
+      this._isLoading = false;
+    }
+  }
+
+  async fetchUnpublishedQuizzes() {
+    this._isLoading = true;
+    try {
+      const quizzes = await QuizService.fetchUnpublishedQuizzes();
+      this._unpublishedQuizzes = quizzes;
+    } catch (e) {
+      console.log('Fetch unpublished quizzes error', e);
+      throw e;
+    } finally {
+      this._isLoading = false;
+    }
   }
 }
