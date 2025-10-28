@@ -44,7 +44,7 @@ export class QuizStore {
     this._isLoading = true;
     try {
       const createdQuiz = await QuizService.createUnpublishedQuiz(quizData);
-      this._quizzes.push(createdQuiz);
+      this._unpublishedQuizzes.push(createdQuiz);
       return createdQuiz;
     } catch (e) {
       console.log('Quiz creation error: ', e);
