@@ -9,8 +9,9 @@
 
 .main {
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
-  align-items: flex-start;
   padding: 40px 20px;
 }
 
@@ -33,4 +34,85 @@
   color: $text-inactive;
   margin-bottom: 28px;
   font-size: 15px;
+}
+
+.questionsSection {
+  margin-top: 40px;
+  background: $background-tile;
+  border-radius: 20px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+  padding: 32px 36px;
+  max-width: 800px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.questionsTitle {
+  font-size: 22px;
+  font-weight: 600;
+  color: $text;
+}
+
+.questionsList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.questionItem {
+  background: $background;
+  border-radius: 14px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  padding: 18px 20px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+  transition: 0.2s ease;
+
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+  }
+}
+
+.questionHeader {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.questionIndex {
+  color: $accent;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.questionText {
+  font-size: 16px;
+  font-weight: 500;
+  color: $text;
+}
+
+.answersList {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: 26px;
+}
+
+.answerItem {
+  font-size: 15px;
+  padding: 5px 8px;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.03);
+  color: $text-inactive;
+  width: fit-content;
+  transition: 0.15s ease;
+}
+
+.correct {
+  background: rgba(16, 185, 129, 0.15);
+  color: $success;
+  font-weight: 600;
 }

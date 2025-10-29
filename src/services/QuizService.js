@@ -27,4 +27,9 @@ export default class QuizService {
     const response = await $api.get(`/quiz/${id}`);
     return response.data;
   }
+
+  static async publishQuiz(quizId) {
+    const response = await $api.post(`/quiz/publish/${quizId}`);
+    return response.data;
+  }
 }

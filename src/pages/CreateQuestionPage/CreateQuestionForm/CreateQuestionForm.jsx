@@ -68,7 +68,12 @@ const CreateQuestionForm = observer(({ quizId }) => {
         </Button>
       </div>
 
-      <Button color="success" className={styles.completeButton} type="button">
+      <Button
+        color="success"
+        className={styles.completeButton}
+        type="button"
+        onClick={() => formStore.publishQuiz(quizId)}
+      >
         Завершить
       </Button>
     </form>

@@ -1,5 +1,6 @@
 import { makeAutoObservable } from 'mobx';
 import QuestionService from '@/services/QuestionService.js';
+import QuizService from '@/services/QuizService.js';
 
 export class FormStore {
   _quizFormData = {
@@ -104,15 +105,13 @@ export class FormStore {
         })),
       };
 
-      console.log(payload);
-
       const response = await QuestionService.createQuestionForUnpublished(
         payload.unpublishedQuizId,
         payload.text,
         payload.answers,
       );
 
-      this._questions.push(response.data);
+      this._questions.push(response.data.question);
       this.questionFormReset();
       console.log('Question successfully created');
     } catch (error) {
@@ -121,6 +120,25 @@ export class FormStore {
         error.response?.data || error.message,
       );
       console.log(error.response?.data?.message || 'Question creation error');
+    } finally {
+      this._isSubmitting = false;
+    }
+  }
+
+  async publishQuiz(quizId) {
+    this._isSubmitting = true;
+    try {
+      const response = await QuizService.publishQuiz(quizId);
+      console.log(response.message || 'Quiz published successfully');
+
+      this.reset();
+      this._questions = [];
+      alert('Квиз успешно опубликован!');
+    } catch (error) {
+      console.error(
+        'Publish quiz error:',
+        error.response?.data || error.message,
+      );
     } finally {
       this._isSubmitting = false;
     }
