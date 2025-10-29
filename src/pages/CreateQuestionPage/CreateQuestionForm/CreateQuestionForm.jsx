@@ -21,9 +21,9 @@ const CreateQuestionForm = observer(({ quizId }) => {
     formStore.markAsCorrect(index);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    formStore.addQuestion(quizId);
+    await formStore.createQuestionForUnpublished(quizId);
   };
 
   return (
@@ -63,17 +63,17 @@ const CreateQuestionForm = observer(({ quizId }) => {
 
       <div className={styles.buttons}>
         <Button type="submit">Создать вопрос</Button>
-        <Button
-          variant="outline"
-          color="danger"
-          type="button"
-          onClick={() => formStore.questionFormReset()}
-        >
+        <Button variant="outline" color="danger" type="button">
           Отменить создание
         </Button>
       </div>
 
-      <Button color="success" className={styles.completeButton} type="button">
+      <Button
+        color="success"
+        className={styles.completeButton}
+        type="button"
+        onClick={() => formStore.publishQuiz(quizId)}
+      >
         Завершить
       </Button>
     </form>
