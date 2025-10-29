@@ -27,7 +27,6 @@ export const router = createBrowserRouter([
           { path: staticLinks.main, element: <HomePage /> },
           { path: staticLinks.quizzes, element: <QuizzesPage /> },
           { path: staticLinks.myQuizzes, element: <MyQuizzesPage /> },
-          { path: dynamicLinks.quiz, element: <QuizPage /> },
           { path: dynamicLinks.result, element: <ResultPage /> },
         ],
       },
@@ -45,6 +44,7 @@ export const router = createBrowserRouter([
             path: dynamicLinks.createQuizQuestions,
             element: <CreateQuestionPage />,
           },
+          { path: dynamicLinks.quiz, element: <QuizPage /> },
         ],
       },
       {

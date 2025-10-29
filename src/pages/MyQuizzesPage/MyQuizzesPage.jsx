@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 import { observer } from 'mobx-react-lite';
 
 import styles from './MyQuizzesPage.module.scss';
+import PageTitle from '@/components/commons/PageTitle/PageTitle.jsx';
 
 const MyQuizzesPage = observer(() => {
   const quizStore = useStore().quiz;
@@ -17,12 +18,10 @@ const MyQuizzesPage = observer(() => {
   return (
     <WhiteTile>
       <div className={styles.titleWrapper}>
-        <div className={styles.leftSide}>
-          <h1 className={styles.title}>Список ваших квизов</h1>
-          <p className={styles.subtitle}>
-            Создавайте, редактируйте и публикуйте свои квизы.
-          </p>
-        </div>
+        <PageTitle
+          title="Список ваших квизов"
+          subtitle="Создавайте, редактируйте и публикуйте свои квизы."
+        />
       </div>
 
       <div className={styles.quizzesGrid}>

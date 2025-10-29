@@ -5,8 +5,10 @@ import { getDifficultyColor } from '@/helpers/getDifficultyColor.js';
 import { getDisplayName } from '@/helpers/getDisplayName.js';
 
 import styles from './QuizCard.module.scss';
+import { useNavigate } from 'react-router-dom';
 
-const QuizCard = ({ quiz }) => {
+const QuizCard = ({ quiz, quizId }) => {
+  const navigate = useNavigate();
   const Icon = ICON_MAP[quiz.emoji] || ICON_MAP['Laptop'];
 
   const colorObj = colors.find((c) => c.name === quiz.color);
@@ -41,7 +43,13 @@ const QuizCard = ({ quiz }) => {
           </span>
         </div>
 
-        <Button>Начать квиз</Button>
+        <Button
+          onClick={() => {
+            navigate(`/quizzes/${quizId}`);
+          }}
+        >
+          Начать квиз
+        </Button>
       </div>
     </div>
   );

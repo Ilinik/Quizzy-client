@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 
 import styles from './QuizzesPage.module.scss';
+import PageTitle from '@/components/commons/PageTitle/PageTitle.jsx';
 
 const QuizzesPage = observer(() => {
   const quizStore = useStore().quiz;
@@ -19,12 +20,10 @@ const QuizzesPage = observer(() => {
   return (
     <WhiteTile>
       <div className={styles.titleWrapper}>
-        <div className={styles.leftSide}>
-          <h1 className={styles.title}>Библиотека квизов</h1>
-          <p className={styles.subtitle}>
-            Погрузитесь в мир увлекательных викторин и тестов!
-          </p>
-        </div>
+        <PageTitle
+          title="Библиотека квизов"
+          subtitle="Погрузитесь в мир увлекательных викторин и тестов!"
+        />
         <div className={styles.rightSide}>
           <Button
             onClick={() => {
@@ -38,7 +37,7 @@ const QuizzesPage = observer(() => {
       <div className={styles.quizzesGrid}>
         {quizStore.quizzes.length > 0 ? (
           quizStore.quizzes.map((quiz) => (
-            <QuizCard key={quiz.id} quiz={quiz} />
+            <QuizCard key={quiz.id} quiz={quiz} quizId={quiz.id} />
           ))
         ) : (
           <div className={styles.quizStatus}>Не удалось найти квизы</div>

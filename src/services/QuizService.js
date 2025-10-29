@@ -23,8 +23,8 @@ export default class QuizService {
     return response.data;
   }
 
-  static async getQuizById(id) {
-    const response = await $api.get(`/quiz/${id}`);
+  static async getQuizById(quizId) {
+    const response = await $api.get(`/quiz/${quizId}`);
     return response.data;
   }
 
