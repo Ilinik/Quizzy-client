@@ -8,4 +8,8 @@ export default class QuestionService {
       answers,
     });
   }
+
+  static async getQuestionsById(quizId) {
+    return $api.get(`/questions/quiz/${quizId}`);
+  }
 }
