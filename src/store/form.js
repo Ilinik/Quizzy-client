@@ -92,12 +92,11 @@ export class FormStore {
     };
   }
 
-  async createQuestionForUnpublished(quizId) {
+  async createQuestion(quizId) {
     this._isSubmitting = true;
-
     try {
       const payload = {
-        unpublishedQuizId: quizId,
+        quizId,
         text: this._questionFormData.text.trim(),
         answers: this._questionFormData.answers.map(({ text, isCorrect }) => ({
           text: text.trim(),
@@ -105,21 +104,19 @@ export class FormStore {
         })),
       };
 
-      const response = await QuestionService.createQuestionForUnpublished(
-        payload.unpublishedQuizId,
+      const response = await QuestionService.createQuestion(
+        payload.quizId,
         payload.text,
         payload.answers,
       );
 
       this._questions.push(response.data.question);
       this.questionFormReset();
-      console.log('Question successfully created');
     } catch (error) {
       console.error(
         'Question creation error:',
         error.response?.data || error.message,
       );
-      console.log(error.response?.data?.message || 'Question creation error');
     } finally {
       this._isSubmitting = false;
     }
@@ -129,11 +126,9 @@ export class FormStore {
     this._isSubmitting = true;
     try {
       const response = await QuizService.publishQuiz(quizId);
-      console.log(response.message || 'Quiz published successfully');
-
       this.reset();
       this._questions = [];
-      alert('Квиз успешно опубликован!');
+      alert(response.message || 'Квиз успешно опубликован!');
     } catch (error) {
       console.error(
         'Publish quiz error:',

@@ -2,6 +2,7 @@ import { Header } from '@/components/commons/Header/Header.jsx';
 import CreateQuizForm from '@/pages/CreateQuizPage/CreateQuizForm/CreateQuizForm.jsx';
 
 import styles from './CreateQuizPage.module.scss';
+import PageTitle from '@/components/commons/PageTitle/PageTitle.jsx';
 
 const CreateQuizPage = () => {
   return (

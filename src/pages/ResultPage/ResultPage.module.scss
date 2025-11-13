@@ -1,0 +1,96 @@
+@use '@/assets/styles/variables' as *;
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: $background;
+}
+
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 40px 20px;
+  min-height: calc(90vh - $header-height);
+}
+
+.resultCard {
+  background: $background-tile;
+  border-radius: 20px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+  max-width: 760px;
+  width: 100%;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.title {
+  font-size: 28px;
+  font-weight: 700;
+  color: $text;
+}
+
+.score {
+  font-size: 18px;
+  color: $text;
+  strong {
+    color: $primary;
+  }
+}
+
+.questionsList {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.questionItem {
+  background: rgba(255, 255, 255, 0.03);
+  padding: 18px 20px;
+  border-radius: 14px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.questionText {
+  font-size: 16px;
+  font-weight: 600;
+  color: $text;
+  margin-bottom: 12px;
+}
+
+.answers {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.answer {
+  font-size: 15px;
+  padding: 6px 10px;
+  border-radius: 8px;
+  background: rgba(107, 114, 128, 0.07);
+  color: $text;
+}
+
+.correct {
+  background: rgba(16, 185, 129, 0.15);
+  color: $success;
+  font-weight: 600;
+}
+
+.wrong {
+  background: rgba(239, 68, 68, 0.15);
+  color: $danger;
+  font-weight: 600;
+}
+
+.backButton {
+  align-self: flex-start;
+  margin-top: 16px;
+}

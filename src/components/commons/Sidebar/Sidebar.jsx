@@ -8,11 +8,6 @@ import styles from './Sidebar.module.scss';
 export const Sidebar = () => {
   const link = [
     {
-      name: 'Главная',
-      image: <Home />,
-      to: staticLinks.main,
-    },
-    {
       name: 'Квизы',
       image: <Quizes />,
       to: staticLinks.quizzes,

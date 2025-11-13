@@ -3,14 +3,28 @@ import { ICON_MAP } from '@/constants/icons.js';
 import { colors } from '@/constants/colors.js';
 import { getDifficultyColor } from '@/helpers/getDifficultyColor.js';
 import { getDisplayName } from '@/helpers/getDisplayName.js';
+import { useNavigate } from 'react-router-dom';
+import { useStore } from '@/hooks/useStore.js';
 
 import styles from './QuizCard.module.scss';
 
-const QuizCard = ({ quiz }) => {
+const QuizCard = ({ quiz, quizId, variant = 'default' }) => {
+  const navigate = useNavigate();
+  const quizStore = useStore().quiz;
   const Icon = ICON_MAP[quiz.emoji] || ICON_MAP['Laptop'];
 
   const colorObj = colors.find((c) => c.name === quiz.color);
   const iconColor = colorObj ? colorObj.value : '#3b82f6';
+
+  const handlePublish = () => {
+    quizStore.publishQuiz(quizId);
+    alert('Квиз опубликован');
+  };
+
+  const deleteQuiz = () => {
+    quizStore.deleteQuiz(quizId);
+    alert('Квиз удален!');
+  };
 
   return (
     <div className={styles.quizCard}>
@@ -41,7 +55,30 @@ const QuizCard = ({ quiz }) => {
           </span>
         </div>
 
-        <Button>Начать квиз</Button>
+        {variant === 'myQuiz' ? (
+          <>
+            {quiz.status !== 'PUBLISHED' && (
+              <Button variant="filled" onClick={handlePublish}>
+                Опубликовать
+              </Button>
+            )}
+            <Button
+              variant="outline"
+              color="danger"
+              onClick={() => deleteQuiz()}
+            >
+              Удалить
+            </Button>
+          </>
+        ) : (
+          <Button
+            onClick={() => {
+              navigate(`/quizzes/${quizId}`);
+            }}
+          >
+            Начать квиз
+          </Button>
+        )}
       </div>
     </div>
   );

@@ -6,7 +6,7 @@ import { Outlet, Navigate } from 'react-router-dom';
 const PublicRoute = observer(() => {
   const { isAuth } = useStore().auth;
 
-  return !isAuth ? <Outlet /> : <Navigate to={staticLinks.main} />;
+  return !isAuth ? <Outlet /> : <Navigate to={staticLinks.quizzes} />;
 });
 
 export default PublicRoute;
