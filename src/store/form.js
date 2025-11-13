@@ -128,7 +128,7 @@ export class FormStore {
       const response = await QuizService.publishQuiz(quizId);
       this.reset();
       this._questions = [];
-      alert(response.message || 'Квиз успешно опубликован!');
+      alert('Квиз успешно опубликован!');
     } catch (error) {
       console.error(
         'Publish quiz error:',

@@ -23,7 +23,7 @@ const Layout = ({ children }) => {
             Меню
           </Button>
 
-          <Sidebar isOpen={isSidebarOpen} />
+          <Sidebar isOpen={isSidebarOpen} setOpen={setIsSidebarOpen} />
 
           <div className={styles.content}>{children}</div>
         </main>
