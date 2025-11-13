@@ -12,7 +12,6 @@ const MyQuizzesPage = observer(() => {
 
   useEffect(() => {
     quizStore.fetchUserQuizzes();
-    console.log('fetch unpublish');
   }, []);
 
   return (
@@ -27,7 +26,12 @@ const MyQuizzesPage = observer(() => {
       <div className={styles.quizzesGrid}>
         {quizStore.quizzes.length > 0 ? (
           quizStore.quizzes.map((quiz) => (
-            <QuizCard key={quiz.id} quiz={quiz} variant="myQuiz" />
+            <QuizCard
+              key={quiz.id}
+              quizId={quiz.id}
+              quiz={quiz}
+              variant="myQuiz"
+            />
           ))
         ) : (
           <div className={styles.quizStatus}>

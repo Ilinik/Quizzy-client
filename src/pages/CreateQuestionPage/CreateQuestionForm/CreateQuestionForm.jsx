@@ -30,7 +30,7 @@ const CreateQuestionForm = observer(({ quizId }) => {
 
   const handlePublish = async (id) => {
     await formStore.publishQuiz(id);
-    navigate('/quizzes');
+    navigate('/my-quizzes');
   };
 
   return (
