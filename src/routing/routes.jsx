@@ -25,7 +25,6 @@ export const router = createBrowserRouter([
       {
         element: <PrivateRoute />,
         children: [
-          { path: staticLinks.main, element: <HomePage /> },
           { path: staticLinks.quizzes, element: <QuizzesPage /> },
           { path: staticLinks.myQuizzes, element: <MyQuizzesPage /> },
         ],

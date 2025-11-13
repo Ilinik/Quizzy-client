@@ -19,7 +19,7 @@ export const Header = observer(({ showSearch = true }) => {
         height={80}
         className={styles.logo}
         onClick={() => {
-          navigate('/');
+          navigate('/quizzes');
         }}
       />
       {authStore.isAuth ? (

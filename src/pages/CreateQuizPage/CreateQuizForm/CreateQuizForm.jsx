@@ -33,7 +33,7 @@ const CreateQuizForm = observer(() => {
     const data = toJS(formStore.quizFormData);
 
     try {
-      const createdQuiz = await quizStore.createUnpublishedQuiz(data);
+      const createdQuiz = await quizStore.createQuiz(data);
       formStore.reset();
 
       const quizId = createdQuiz.quiz.id;

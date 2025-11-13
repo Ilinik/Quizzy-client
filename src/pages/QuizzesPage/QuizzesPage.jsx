@@ -14,7 +14,7 @@ const QuizzesPage = observer(() => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    quizStore.fetchQuizzes();
+    quizStore.fetchPublishedQuizzes();
   }, []);
 
   return (

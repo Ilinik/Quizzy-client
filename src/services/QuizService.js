@@ -6,18 +6,18 @@ export default class QuizService {
     return response.data;
   }
 
-  static async createUnpublishedQuiz(data) {
-    const response = await $api.post('/quiz/unpublished', data);
+  static async fetchAllQuizzes() {
+    const response = await $api.get('/quiz');
     return response.data;
   }
 
-  static async fetchQuizzes() {
-    const response = await $api.get('/quiz/quizzes');
+  static async fetchPublishedQuizzes() {
+    const response = await $api.get('/quiz/published');
     return response.data;
   }
 
-  static async fetchUnpublishedQuizzes() {
-    const response = await $api.get('/quiz/quizzes-unpublished', {
+  static async fetchUserQuizzes() {
+    const response = await $api.get('/quiz/user', {
       headers: { authorization: localStorage.getItem('token') },
     });
     return response.data;
@@ -29,7 +29,17 @@ export default class QuizService {
   }
 
   static async publishQuiz(quizId) {
-    const response = await $api.post(`/quiz/publish/${quizId}`);
+    const response = await $api.post(`/quiz/${quizId}/publish`);
+    return response.data;
+  }
+
+  static async updateQuiz(quizId, data) {
+    const response = await $api.patch(`/quiz/${quizId}`, data);
+    return response.data;
+  }
+
+  static async deleteQuiz(quizId) {
+    const response = await $api.delete(`/quiz/${quizId}`);
     return response.data;
   }
 }

@@ -7,12 +7,20 @@ import { getDisplayName } from '@/helpers/getDisplayName.js';
 import styles from './QuizCard.module.scss';
 import { useNavigate } from 'react-router-dom';
 
-const QuizCard = ({ quiz, quizId }) => {
+const QuizCard = ({ quiz, quizId, variant = 'default' }) => {
   const navigate = useNavigate();
   const Icon = ICON_MAP[quiz.emoji] || ICON_MAP['Laptop'];
 
   const colorObj = colors.find((c) => c.name === quiz.color);
   const iconColor = colorObj ? colorObj.value : '#3b82f6';
+
+  const handlePublish = () => {
+    alert('Квиз успешно добавлен!');
+  };
+
+  const deleteQuiz = () => {
+    alert('Квиз удален!');
+  };
 
   return (
     <div className={styles.quizCard}>
@@ -43,13 +51,28 @@ const QuizCard = ({ quiz, quizId }) => {
           </span>
         </div>
 
-        <Button
-          onClick={() => {
-            navigate(`/quizzes/${quizId}`);
-          }}
-        >
-          Начать квиз
-        </Button>
+        {variant === 'myQuiz' ? (
+          <>
+            <Button variant="filled" onClick={() => handlePublish()}>
+              Опубликовать
+            </Button>
+            <Button
+              variant="outline"
+              color="danger"
+              onClick={() => deleteQuiz()}
+            >
+              Удалить
+            </Button>
+          </>
+        ) : (
+          <Button
+            onClick={() => {
+              navigate(`/quizzes/${quizId}`);
+            }}
+          >
+            Начать квиз
+          </Button>
+        )}
       </div>
     </div>
   );

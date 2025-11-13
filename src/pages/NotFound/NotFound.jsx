@@ -17,7 +17,7 @@ const NotFound = () => {
 
         <Button
           onClick={() => {
-            navigate('/');
+            navigate('/quizzes');
           }}
         >
           Вернуться на главную

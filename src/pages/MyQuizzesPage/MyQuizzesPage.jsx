@@ -11,7 +11,7 @@ const MyQuizzesPage = observer(() => {
   const quizStore = useStore().quiz;
 
   useEffect(() => {
-    quizStore.fetchUnpublishedQuizzes();
+    quizStore.fetchUserQuizzes();
     console.log('fetch unpublish');
   }, []);
 
@@ -25,9 +25,9 @@ const MyQuizzesPage = observer(() => {
       </div>
 
       <div className={styles.quizzesGrid}>
-        {quizStore.unpublishedQuizzes.length > 0 ? (
-          quizStore.unpublishedQuizzes.map((quiz) => (
-            <QuizCard key={quiz.id} quiz={quiz} />
+        {quizStore.quizzes.length > 0 ? (
+          quizStore.quizzes.map((quiz) => (
+            <QuizCard key={quiz.id} quiz={quiz} variant="myQuiz" />
           ))
         ) : (
           <div className={styles.quizStatus}>
