@@ -1,11 +1,12 @@
 import { SidebarLink } from '../SidebarLink/SidebarLink';
 import { staticLinks } from '../../../config/staticLinks';
-import { Home } from '../../icons/Home';
 import { Quizes } from '../../icons/Quizes';
 import Folder from '@/components/icons/Folder.jsx';
 import styles from './Sidebar.module.scss';
+import Button from '@/components/commons/Button/Button.jsx';
+import { X } from 'lucide-react';
 
-export const Sidebar = () => {
+export const Sidebar = ({ isOpen, setOpen }) => {
   const link = [
     {
       name: 'Квизы',
@@ -20,7 +21,7 @@ export const Sidebar = () => {
   ];
 
   return (
-    <aside className={styles.sidebar}>
+    <aside className={`${styles.sidebar} ${isOpen ? styles.open : ''}`}>
       <nav className={styles.nav}>
         {link.map((item) => (
           <SidebarLink
@@ -31,6 +32,18 @@ export const Sidebar = () => {
           />
         ))}
       </nav>
+
+      {isOpen && (
+        <Button
+          variant="light"
+          className={styles.closeBtn}
+          onClick={() => {
+            setOpen(false);
+          }}
+        >
+          <X color="#3b82f6" />
+        </Button>
+      )}
     </aside>
   );
 };

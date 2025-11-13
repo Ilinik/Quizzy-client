@@ -8,41 +8,51 @@
 }
 
 .hero {
-  margin-bottom: 80px;
   flex: 1;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 10%;
-  gap: 20px;
+
+  padding: 60px 10%;
+  gap: 40px;
+
+  @media (max-width: 1100px) {
+    padding: 50px 6%;
+    gap: 30px;
+  }
 
   @media (max-width: 900px) {
     flex-direction: column;
     text-align: center;
     padding: 40px 5%;
   }
+
+  @media (max-width: 600px) {
+    padding: 30px 20px;
+    gap: 20px;
+  }
 }
 
 .content {
-  max-width: 600px;
+  max-width: 550px;
+
+  @media (max-width: 900px) {
+    max-width: 100%;
+  }
 }
 
 .title {
-  font-size: 42px;
+  font-size: clamp(28px, 4vw, 42px);
   font-weight: 700;
   color: $text;
   margin-bottom: 20px;
   line-height: 1.2;
-
-  @media (max-width: 600px) {
-    font-size: 32px;
-  }
 }
 
 .subtitle {
-  font-size: 18px;
+  font-size: clamp(15px, 1.6vw, 18px);
   color: $text-inactive;
-  margin-bottom: 32px;
+  margin-bottom: 28px;
   line-height: 1.5;
 }
 
@@ -53,17 +63,31 @@
 
 .illustration {
   flex: 1;
+  width: 100%;
+  min-height: 350px;
+  max-width: 560px;
+
+  aspect-ratio: 1 / 1;
   background: url('/images/welcome/welcome.svg') no-repeat center;
   background-size: contain;
-  min-width: 500px;
-  width: 100%;
-  min-height: 600px;
-  height: 100%;
 
   @media (max-width: 900px) {
-    min-width: 400px;
-    min-height: 450px;
-    background-position: center;
-    background-size: contain;
+    max-width: 480px;
   }
+
+  @media (max-width: 600px) {
+    max-width: 380px;
+  }
+
+  @media (max-width: 400px) {
+    max-width: 300px;
+  }
+}
+
+.footer {
+  padding: 20px 0;
+  text-align: center;
+  color: $text-inactive;
+  font-size: 14px;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
 }

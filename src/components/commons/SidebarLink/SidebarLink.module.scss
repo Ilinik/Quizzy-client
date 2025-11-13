@@ -12,8 +12,16 @@
   color: $text-inactive;
   font-size: clamp(1rem, 0.9423076923076923rem + 0.2564102564102564vw, 1.25rem);
   font-weight: 600;
-  transition: background 0.3s ease, color 0.3s ease;
+  transition:
+    background 0.3s ease,
+    color 0.3s ease;
   cursor: pointer;
+
+  @media (max-width: 1120px) {
+    width: 100%;
+    background: $background-tile;
+    justify-content: center;
+  }
 }
 
 .buttonActive {

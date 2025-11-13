@@ -11,7 +11,7 @@
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  padding: 40px 20px;
+  padding: 20px;
   min-height: calc(90vh - $header-height);
 }
 
@@ -28,13 +28,13 @@
 }
 
 .title {
-  font-size: 28px;
+  font-size: clamp(1.375rem, 1.25rem + 0.556vw, 1.75rem);
   font-weight: 700;
   color: $text;
 }
 
 .score {
-  font-size: 18px;
+  font-size: clamp(1rem, 0.958rem + 0.185vw, 1.125rem);
   color: $text;
   strong {
     color: $primary;
@@ -55,7 +55,7 @@
 }
 
 .questionText {
-  font-size: 16px;
+  font-size: clamp(0.875rem, 0.833rem + 0.185vw, 1rem);
   font-weight: 600;
   color: $text;
   margin-bottom: 12px;
@@ -71,7 +71,7 @@
 }
 
 .answer {
-  font-size: 15px;
+  font-size: clamp(0.875rem, 0.854rem + 0.093vw, 0.938rem);
   padding: 6px 10px;
   border-radius: 8px;
   background: rgba(107, 114, 128, 0.07);

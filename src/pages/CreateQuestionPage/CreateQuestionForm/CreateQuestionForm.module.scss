@@ -76,7 +76,28 @@
 
 .completeButton {
   margin-top: 10px;
-  max-width: 250px;
+  max-width: 300px;
   width: 100%;
   align-self: center;
+}
+
+@media (max-width: 740px) {
+  .questions {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .buttons {
+    flex-direction: column;
+    width: 150px;
+
+    > * {
+      width: 150px;
+    }
+  }
+
+  .completeButton {
+    max-width: none;
+  }
 }

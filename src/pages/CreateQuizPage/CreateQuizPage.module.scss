@@ -11,20 +11,20 @@
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  padding: 40px 20px;
+  padding: 20px;
 }
 
 .card {
   background: $background-tile;
   border-radius: 20px;
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
-  max-width: 800px;
+  max-width: 1000px;
   width: 100%;
   padding: 40px;
 }
 
 .title {
-  font-size: 26px;
+  font-size: clamp(1.25rem, 1.125rem + 0.556vw, 1.625rem);
   font-weight: 600;
   margin-bottom: 8px;
 }
@@ -32,5 +32,11 @@
 .subtitle {
   color: $text-inactive;
   margin-bottom: 28px;
-  font-size: 15px;
+  font-size: clamp(0.875rem, 0.854rem + 0.093vw, 0.938rem);
+}
+
+@media (max-width: 800px) {
+  .card {
+    max-width: none;
+  }
 }

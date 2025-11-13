@@ -1,15 +1,45 @@
 @use '@/assets/styles/variables' as *;
 
 .sidebar {
+  display: flex;
+  flex-direction: column;
   position: sticky;
   top: $header-height;
-  height: fit-content;
+  height: calc(100vh - $header-height);
   max-height: calc(100vh - $header-height);
-  overflow-y: auto;
+  overflow-y: hidden;
   flex-shrink: 0;
+  z-index: 1001;
+
+  @media (max-width: 1120px) {
+    position: fixed;
+    top: $header-height;
+    left: -3000px;
+    width: 100%;
+    height: calc(100vh - $header-height);
+    background: white;
+    padding: 20px;
+    box-shadow: 4px 0 12px rgba(0, 0, 0, 0.15);
+    transition: left 0.3s ease;
+
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.open {
+  @media (max-width: 1120px) {
+    left: 0;
+  }
 }
 
 .nav {
-  display: flex;
-  flex-direction: column;
+  flex: 1 1 auto;
+  overflow-y: auto;
+}
+
+.closeBtn {
+  flex-shrink: 0;
+  width: 100%;
+  margin-top: auto;
 }

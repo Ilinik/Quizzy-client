@@ -7,11 +7,11 @@
 }
 
 .title {
-  font-size: 36px;
+  font-size: clamp(1.625rem, 1.417rem + 0.926vw, 2.25rem);
   font-weight: 700;
 }
 
 .subtitle {
-  font-size: 16px;
+  font-size: clamp(0.75rem, 0.667rem + 0.37vw, 1rem);
   color: $text-inactive;
 }
