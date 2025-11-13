@@ -15,6 +15,22 @@ export class PlayStore {
     makeAutoObservable(this);
   }
 
+  get result() {
+    return this.correctAnswers;
+  }
+
+  setSelectedIndex(i) {
+    this.selectedIndex = i;
+  }
+
+  setCurrentIndex(i) {
+    this.currentIndex = i;
+  }
+
+  increaseCorrect() {
+    this.correctAnswers++;
+  }
+
   async fetchQuestions(quizId) {
     this.isLoaded = false;
     try {
@@ -30,28 +46,5 @@ export class PlayStore {
     } catch (e) {
       console.log(e);
     }
-  }
-
-  get currentQuestion() {
-    if (!Array.isArray(this.questions) || this.questions.length === 0) {
-      return null;
-    }
-    return this.questions[this.currentIndex];
-  }
-
-  setSelectedIndex(i) {
-    this.selectedIndex = i;
-  }
-
-  setCurrentIndex(i) {
-    this.currentIndex = i;
-  }
-
-  increaseCorrect() {
-    this.correctAnswers++;
-  }
-
-  get result() {
-    return this.correctAnswers;
   }
 }

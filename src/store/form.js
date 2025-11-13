@@ -46,6 +46,10 @@ export class FormStore {
     return this._isSubmitting;
   }
 
+  setIsSubmitting(bool) {
+    this._isSubmitting = bool;
+  }
+
   setField(name, value) {
     this._quizFormData[name] = value;
   }
@@ -93,7 +97,7 @@ export class FormStore {
   }
 
   async createQuestion(quizId) {
-    this._isSubmitting = true;
+    this.setIsSubmitting(true);
     try {
       const payload = {
         quizId,
@@ -118,12 +122,12 @@ export class FormStore {
         error.response?.data || error.message,
       );
     } finally {
-      this._isSubmitting = false;
+      this.setIsSubmitting(false);
     }
   }
 
   async publishQuiz(quizId) {
-    this._isSubmitting = true;
+    this.setIsSubmitting(true);
     try {
       const response = await QuizService.publishQuiz(quizId);
       this.reset();
@@ -135,7 +139,7 @@ export class FormStore {
         error.response?.data || error.message,
       );
     } finally {
-      this._isSubmitting = false;
+      this.setIsSubmitting(false);
     }
   }
 }

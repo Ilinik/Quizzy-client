@@ -27,24 +27,12 @@ export class QuizStore {
     return this._currentQuiz;
   }
 
-  get progress() {
-    if (!this._currentQuiz) return 0;
-    return (
-      ((this._currentIndex + 1) / this._currentQuiz.questions.length) * 100
-    );
-  }
-
-  get percentScore() {
-    if (!this._currentQuiz) return 0;
-    return Math.round((this._score / this._currentQuiz.questions.length) * 100);
-  }
-
   setIsLoading(bool) {
     this._isLoading = bool;
   }
 
   async createQuiz(quizData) {
-    this._isLoading = true;
+    this.setIsLoading(true);
     try {
       const createdQuiz = await QuizService.createQuiz(quizData);
       this._quizzes.push(createdQuiz);
@@ -53,12 +41,12 @@ export class QuizStore {
       console.error('Quiz creation error:', e);
       throw e;
     } finally {
-      this._isLoading = false;
+      this.setIsLoading(false);
     }
   }
 
   async fetchAllQuizzes() {
-    this._isLoading = true;
+    this.setIsLoading(true);
     try {
       const quizzes = await QuizService.fetchAllQuizzes();
       this._quizzes = quizzes;
@@ -66,12 +54,12 @@ export class QuizStore {
       console.error('Fetch quizzes error:', e);
       throw e;
     } finally {
-      this._isLoading = false;
+      this.setIsLoading(false);
     }
   }
 
   async fetchPublishedQuizzes() {
-    this._isLoading = true;
+    this.setIsLoading(true);
     try {
       const quizzes = await QuizService.fetchPublishedQuizzes();
       this._quizzes = quizzes;
@@ -79,12 +67,12 @@ export class QuizStore {
       console.error('Fetch published quizzes error:', e);
       throw e;
     } finally {
-      this._isLoading = false;
+      this.setIsLoading(false);
     }
   }
 
   async fetchUserQuizzes() {
-    this._isLoading = true;
+    this.setIsLoading(true);
     try {
       const quizzes = await QuizService.fetchUserQuizzes();
       this._quizzes = quizzes;
@@ -92,12 +80,12 @@ export class QuizStore {
       console.error('Fetch user quizzes error:', e);
       throw e;
     } finally {
-      this._isLoading = false;
+      this.setIsLoading(false);
     }
   }
 
   async loadQuiz(id) {
-    this._isLoading = true;
+    this.setIsLoading(true);
     try {
       const quiz = await QuizService.getQuizById(id);
       this._currentQuiz = quiz;
@@ -108,7 +96,7 @@ export class QuizStore {
     } catch (e) {
       console.error('Error loading quiz:', e);
     } finally {
-      this._isLoading = false;
+      this.setIsLoading(false);
     }
   }
 
@@ -143,7 +131,7 @@ export class QuizStore {
   }
 
   async publishQuiz(id) {
-    this._isLoading = true;
+    this.setIsLoading(true);
     try {
       const result = await QuizService.publishQuiz(id);
       const updated = this._quizzes.map((q) =>
@@ -154,12 +142,12 @@ export class QuizStore {
     } catch (e) {
       console.error('Failed to publish quiz:', e);
     } finally {
-      this._isLoading = false;
+      this.setIsLoading(false);
     }
   }
 
   async updateQuiz(id, data) {
-    this._isLoading = true;
+    this.setIsLoading(true);
     try {
       const updatedQuiz = await QuizService.updateQuiz(id, data);
       const updated = this._quizzes.map((q) =>
@@ -170,19 +158,19 @@ export class QuizStore {
     } catch (e) {
       console.error('Failed to update quiz:', e);
     } finally {
-      this._isLoading = false;
+      this.setIsLoading(false);
     }
   }
 
   async deleteQuiz(id) {
-    this._isLoading = true;
+    this.setIsLoading(true);
     try {
       await QuizService.deleteQuiz(id);
       this._quizzes = this._quizzes.filter((q) => q.id !== id);
     } catch (e) {
       console.error('Failed to delete quiz:', e);
     } finally {
-      this._isLoading = false;
+      this.setIsLoading(false);
     }
   }
 }
