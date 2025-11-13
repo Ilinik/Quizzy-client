@@ -5,18 +5,22 @@ import { useNavigate } from 'react-router-dom';
 
 const WelcomePage = () => {
   const navigate = useNavigate();
+
   return (
     <div className={styles.welcome}>
       <Header />
+
       <section className={styles.hero}>
         <div className={styles.content}>
           <h1 className={styles.title}>
-            Присоединяйтесь к платформе квизов и прокачайте свои знания
+            Прокачайте свои знания с интерактивными квизами
           </h1>
+
           <p className={styles.subtitle}>
-            Проходите интересные тесты, создавайте собственные викторины и
+            Создавайте свои викторины, проходите тематические тесты и
             соревнуйтесь с друзьями в реальном времени.
           </p>
+
           <Button
             color="primary"
             className={styles.cta}
@@ -28,6 +32,10 @@ const WelcomePage = () => {
 
         <div className={styles.illustration} />
       </section>
+
+      <footer className={styles.footer}>
+        <p>© {new Date().getFullYear()} Quizzy. Все права защищены.</p>
+      </footer>
     </div>
   );
 };
