@@ -7,6 +7,38 @@
   max-height: calc(100vh - $header-height);
   overflow-y: auto;
   flex-shrink: 0;
+
+  @media (max-width: 1120px) {
+    position: fixed;
+    top: $header-height;
+    left: -3000px;
+    width: 100%;
+    height: calc(100vh - $header-height);
+    background: white;
+    padding: 20px;
+    box-shadow: 4px 0 12px rgba(0, 0, 0, 0.15);
+    transition: left 0.3s ease;
+    display: block;
+  }
+}
+
+.open {
+  @media (max-width: 1120px) {
+    left: 0;
+  }
+}
+
+.closeBtn {
+  display: none;
+
+  @media (max-width: 1120px) {
+    display: block;
+    background: none;
+    border: none;
+    font-size: 26px;
+    margin-bottom: 20px;
+    cursor: pointer;
+  }
 }
 
 .nav {
