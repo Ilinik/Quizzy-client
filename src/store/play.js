@@ -1,73 +1,57 @@
 import { makeAutoObservable } from 'mobx';
-import QuestionService from '@/services/QuestionService.js';
+import QuestionService from '@/services/QuestionService';
 
 export class PlayStore {
-  _questions = [];
-  _currentIndex = 0;
-  _selectedIndex = null;
-  _isLoaded = false;
-  _error = null;
+  questions = [];
+  currentIndex = 0;
+  selectedIndex = null;
+  isLoaded = false;
+  error = null;
+
+  correctAnswers = 0;
+  userAnswers = [];
 
   constructor() {
     makeAutoObservable(this);
   }
 
-  get questions() {
-    return this._questions;
-  }
+  async fetchQuestions(quizId) {
+    this.isLoaded = false;
+    try {
+      const response = await QuestionService.getQuestionsById(quizId);
 
-  get currentIndex() {
-    return this._currentIndex;
-  }
+      this.questions = response.data;
+      this.currentIndex = 0;
+      this.selectedIndex = null;
+      this.correctAnswers = 0;
+      this.userAnswers = [];
 
-  get selectedIndex() {
-    return this._selectedIndex;
+      this.isLoaded = true;
+    } catch (e) {
+      console.log(e);
+    }
   }
 
   get currentQuestion() {
-    return this._questions[this._currentIndex];
-  }
-
-  get isLoaded() {
-    return this._isLoaded;
-  }
-
-  get error() {
-    return this._error;
-  }
-
-  setQuestions(questions) {
-    this._questions = questions;
-  }
-
-  setCurrentIndex(index) {
-    this._currentIndex = index;
-  }
-
-  setSelectedIndex(index) {
-    this._selectedIndex = index;
-  }
-
-  setLoaded(bool) {
-    this._isLoaded = bool;
-  }
-
-  setError(message) {
-    this._error = message;
-  }
-
-  async fetchQuestions(quizId) {
-    this.setLoaded(false);
-    this.setError(null);
-
-    try {
-      const response = await QuestionService.getQuestionsById(quizId);
-      this.setQuestions(response.data);
-      this.setLoaded(true);
-    } catch (e) {
-      console.error('Failed to fetch questions', e);
-      this.setError('Не удалось загрузить вопросы');
-      this.setLoaded(true);
+    if (!Array.isArray(this.questions) || this.questions.length === 0) {
+      return null;
     }
+    return this.questions[this.currentIndex];
+  }
+
+  setSelectedIndex(i) {
+    this.selectedIndex = i;
+  }
+
+  setCurrentIndex(i) {
+    this.currentIndex = i;
+  }
+
+  increaseCorrect() {
+    this.correctAnswers++;
+  }
+
+  get result() {
+    return this.correctAnswers;
   }
 }

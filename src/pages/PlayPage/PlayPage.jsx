@@ -12,8 +12,6 @@ const PlayPage = observer(() => {
   const playStore = useStore().play;
   const navigate = useNavigate();
 
-  const { currentQuestion, currentIndex, selectedIndex, questions } = playStore;
-
   useEffect(() => {
     playStore.fetchQuestions(quizId);
   }, [quizId]);
@@ -26,6 +24,8 @@ const PlayPage = observer(() => {
     return <div className={styles.wrapper}>{playStore.error}</div>;
   }
 
+  const { currentQuestion, currentIndex, selectedIndex, questions } = playStore;
+
   if (!currentQuestion) {
     return <div className={styles.wrapper}>Вопросы не найдены</div>;
   }
@@ -35,6 +35,15 @@ const PlayPage = observer(() => {
   };
 
   const handleNext = () => {
+    const question = currentQuestion;
+    const selectedAnswer = question.answers[selectedIndex];
+
+    playStore.userAnswers[currentIndex] = selectedIndex;
+
+    if (selectedAnswer.isCorrect) {
+      playStore.increaseCorrect();
+    }
+
     if (currentIndex + 1 < questions.length) {
       playStore.setCurrentIndex(currentIndex + 1);
       playStore.setSelectedIndex(null);
