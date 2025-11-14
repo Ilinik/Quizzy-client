@@ -1,6 +1,5 @@
 export const staticLinks = {
-  main: '/',
-  quizzes: '/quizzes',
+  quizzes: '/',
   myQuizzes: '/my-quizzes',
   welcome: '/welcome',
   register: '/registration',
