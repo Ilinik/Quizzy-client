@@ -3,18 +3,13 @@ import { useStore } from '@/hooks/useStore.js';
 import { observer } from 'mobx-react-lite';
 import Loader from '@/components/commons/Loader/Loader.jsx';
 import { useForm } from 'react-hook-form';
-import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import '@/assets/styles/base.scss';
+import { loginSchema } from '@/schemas/login.schema.js';
 
 const LoginForm = observer(() => {
   const authStore = useStore().auth;
-
-  const schema = z.object({
-    email: z.string().email('Некорректный Email!'),
-    password: z.string().min(6, 'Пароль должен содержать минимум 6 символов!'),
-  });
 
   const {
     register,
@@ -22,7 +17,7 @@ const LoginForm = observer(() => {
     formState: { errors, isSubmitting },
     setError,
   } = useForm({
-    resolver: zodResolver(schema),
+    resolver: zodResolver(loginSchema),
     mode: 'onChange',
   });
 

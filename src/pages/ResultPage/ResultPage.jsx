@@ -65,7 +65,7 @@ const ResultPage = observer(() => {
             size="large"
             color="primary"
             className={styles.backButton}
-            onClick={() => navigate('/quizzes')}
+            onClick={() => navigate('/')}
           >
             Вернуться к квизам
           </Button>

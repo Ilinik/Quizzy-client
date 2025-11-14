@@ -11,6 +11,7 @@ export class AuthStore {
 
   constructor() {
     makeAutoObservable(this);
+
     this.checkAuth();
   }
 
@@ -42,16 +43,11 @@ export class AuthStore {
     this._isLoading = bool;
   }
 
-  setIsLoadingAuth(bool) {
-    this._isLoadingAuth = bool;
-  }
-
   setIsRefreshing(bool) {
     this._isRefreshing = bool;
   }
 
   async login(email, password) {
-    this.setIsLoadingAuth(true);
     try {
       const response = await AuthService.login(email, password);
       localStorage.setItem('token', response.data.tokens.accessToken);
@@ -59,13 +55,10 @@ export class AuthStore {
       this.setUser(response.data.user);
     } catch (e) {
       console.log(e.response?.data?.message);
-    } finally {
-      this.setIsLoadingAuth(false);
     }
   }
 
   async registration(name, email, password) {
-    this.setIsLoadingAuth(true);
     try {
       const response = await AuthService.registration(name, email, password);
       localStorage.setItem('token', response.data.tokens.accessToken);
@@ -73,13 +66,10 @@ export class AuthStore {
       this.setUser(response.data.user);
     } catch (e) {
       console.log(e.response?.data?.message);
-    } finally {
-      this.setIsLoadingAuth(false);
     }
   }
 
   async logout() {
-    this.setIsLoadingAuth(true);
     try {
       const response = await AuthService.logout();
       localStorage.removeItem('token');
@@ -87,29 +77,29 @@ export class AuthStore {
       this.setUser({});
     } catch (e) {
       console.log(e.response?.data?.message);
-    } finally {
-      this.setIsLoadingAuth(false);
     }
   }
 
   async checkAuth() {
-    if (this.isRefreshing || !localStorage.getItem('token')) return;
+    if (this._isRefreshing || !localStorage.getItem('token')) return;
+
     this.setIsRefreshing(true);
-    this.setIsLoadingAuth(true);
+    this.setIsLoading(true);
 
     try {
       const response = await axios.get(`${API_URL}/auth/refresh`, {
         withCredentials: true,
       });
+
       localStorage.setItem('token', response.data.tokens.accessToken);
+
       this.setAuth(true);
       this.setUser(response.data.user);
-      this.setIsLoading(false);
     } catch (e) {
       console.log(e.response?.data?.message);
     } finally {
       this.setIsRefreshing(false);
-      this.setIsLoadingAuth(false);
+      this.setIsLoading(false);
     }
   }
 }

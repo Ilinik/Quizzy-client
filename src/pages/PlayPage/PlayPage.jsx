@@ -38,7 +38,7 @@ const PlayPage = observer(() => {
     const question = currentQuestion;
     const selectedAnswer = question.answers[selectedIndex];
 
-    playStore.userAnswers[currentIndex] = selectedIndex;
+    playStore.saveAnswer(currentIndex, selectedIndex);
 
     if (selectedAnswer.isCorrect) {
       playStore.increaseCorrect();
