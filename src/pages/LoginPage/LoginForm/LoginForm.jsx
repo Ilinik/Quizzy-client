@@ -47,9 +47,6 @@ const LoginForm = observer(() => {
         placeholder="Пароль"
         className="input"
       />
-      {errors.password && (
-        <div className="formError">{errors.password.message}</div>
-      )}
 
       <Button
         disabled={isSubmitting}

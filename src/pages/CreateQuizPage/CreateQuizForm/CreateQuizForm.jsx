@@ -9,6 +9,7 @@ import { colors } from '@/constants/colors.js';
 import Input from '@/components/commons/Input/Input.jsx';
 import Textarea from '@/components/commons/Textarea/Textarea.jsx';
 import Select from '@/components/commons/Select/Select.jsx';
+import '@/assets/styles/base.scss';
 
 import styles from './CreateQuizForm.module.scss';
 
@@ -30,6 +31,9 @@ const CreateQuizForm = observer(() => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const isValid = formStore.validateForm();
+    if (!isValid) return;
+
     const data = toJS(formStore.quizFormData);
 
     try {
@@ -59,6 +63,10 @@ const CreateQuizForm = observer(() => {
         required
       />
 
+      {formStore._errors.title && (
+        <div className="formError">{formStore._errors.title}</div>
+      )}
+
       <Textarea
         label="Описание"
         name="description"
@@ -67,6 +75,10 @@ const CreateQuizForm = observer(() => {
         placeholder="Кратко опиши, о чём этот тест..."
         rows={3}
       />
+
+      {formStore._errors.title && (
+        <div className="formError">{formStore._errors.description}</div>
+      )}
 
       <div className={styles.row}>
         <div className={styles.field}>

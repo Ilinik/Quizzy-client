@@ -13,18 +13,23 @@ const CreateQuestionForm = observer(({ quizId }) => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     formStore.setQuestionField(name, value);
+    formStore.validateQuestionForm();
   };
 
   const handleAnswerChange = (index, value) => {
     formStore.setAnswer(index, value);
+    formStore.validateQuestionForm();
   };
 
   const handleCorrectSelect = (index) => {
     formStore.markAsCorrect(index);
+    formStore.validateQuestionForm();
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!formStore.validateQuestionForm()) return;
     await formStore.createQuestion(quizId);
   };
 
@@ -41,8 +46,11 @@ const CreateQuestionForm = observer(({ quizId }) => {
         value={formData.text}
         onChange={handleChange}
         placeholder="Например: Что такое React?"
-        required
       />
+
+      {formStore._errors.text && (
+        <div className="formError">{formStore._errors.text}</div>
+      )}
 
       <div className={styles.questions}>
         {formData.answers.map((answer, index) => (
@@ -52,8 +60,14 @@ const CreateQuestionForm = observer(({ quizId }) => {
               value={answer.text}
               onChange={(e) => handleAnswerChange(index, e.target.value)}
               placeholder="Укажите вариант ответа"
-              required
             />
+
+            {formStore._errors[`answer_${index}`] && (
+              <div className="formError">
+                {formStore._errors[`answer_${index}`]}
+              </div>
+            )}
+
             <label className={styles.radioLabel}>
               <input
                 className={styles.radio}
@@ -68,13 +82,17 @@ const CreateQuestionForm = observer(({ quizId }) => {
         ))}
       </div>
 
+      {formStore._errors.correct && (
+        <div className="formError">{formStore._errors.correct}</div>
+      )}
+
       <div className={styles.buttons}>
         <Button type="submit">Создать вопрос</Button>
         <Button
           variant="outline"
           color="danger"
           type="button"
-          onClick={() => navigate('/quizzes')}
+          onClick={() => navigate('/')}
         >
           Отменить создание
         </Button>
@@ -88,6 +106,10 @@ const CreateQuestionForm = observer(({ quizId }) => {
       >
         Завершить
       </Button>
+
+      {formStore._errors.server && (
+        <div className="formError">{formStore._errors.server}</div>
+      )}
     </form>
   );
 });

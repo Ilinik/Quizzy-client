@@ -25,6 +25,7 @@ body {
 .formError {
   color: $danger;
   font-size: 14px;
+  align-self: flex-start;
 
   animation: fadeIn 0.3s ease-out;
 }

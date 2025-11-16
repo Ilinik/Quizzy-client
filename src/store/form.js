@@ -26,6 +26,8 @@ export class FormStore {
   _questions = [];
   _isSubmitting = false;
 
+  _errors = {};
+
   constructor() {
     makeAutoObservable(this, {}, { autoBind: true });
   }
@@ -67,6 +69,30 @@ export class FormStore {
       ...this._quizFormData,
       [name]: value,
     };
+  }
+
+  validateField(name, value) {
+    switch (name) {
+      case 'title':
+        if (!value.trim()) this._errors[name] = 'Название обязательно!';
+        else if (value.length < 6)
+          this._errors[name] = 'Название должно содержать минимум 6 символов';
+        else delete this._errors[name];
+        break;
+
+      case 'description':
+        if (value.length > 200) this._errors[name] = 'Максимум 200 символов';
+        else delete this._errors[name];
+        break;
+    }
+  }
+
+  validateForm() {
+    Object.keys(this.quizFormData).forEach((key) =>
+      this.validateField(key, this.quizFormData[key]),
+    );
+
+    return Object.keys(this._errors).length === 0;
   }
 
   setCreator(id) {
@@ -129,6 +155,31 @@ export class FormStore {
     };
   }
 
+  validateQuestionForm() {
+    const { text, answers } = this.questionFormData;
+
+    this._errors = {};
+
+    if (!text.trim()) {
+      this._errors.text = 'Введите текст вопроса!';
+    } else if (text.length < 4) {
+      this._errors.text = 'Вопрос должен содержать минимум 4 символа!';
+    }
+
+    answers.forEach((answer, index) => {
+      if (!answer.text.trim()) {
+        this._errors[`answer_${index}`] = 'Ответ не может быть пустым!';
+      }
+    });
+
+    const hasCorrect = answers.some((a) => a.isCorrect);
+    if (!hasCorrect) {
+      this._errors.correct = 'Выберите правильный ответ!';
+    }
+
+    return Object.keys(this._errors).length === 0;
+  }
+
   async createQuestion(quizId) {
     this.setIsSubmitting(true);
 
@@ -151,6 +202,7 @@ export class FormStore {
       this.setQuestions([...this._questions, res.data.question]);
       this.questionFormReset();
     } catch (e) {
+      this._errors.server = 'Ошибка при создании вопроса!';
       console.error('Question creation error:', e.response?.data || e);
     } finally {
       this.setIsSubmitting(false);
