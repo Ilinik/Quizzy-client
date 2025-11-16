@@ -26,7 +26,7 @@ const CreateQuestionPage = observer(() => {
 
             <ul className={styles.questionsList}>
               {formStore.questions.map((q, index) => (
-                <li key={q.id || index} className={styles.questionItem}>
+                <li key={q.id} className={styles.questionItem}>
                   <div className={styles.questionHeader}>
                     <span className={styles.questionIndex}>{index + 1}.</span>
                     <p className={styles.questionText}>{q.text}</p>

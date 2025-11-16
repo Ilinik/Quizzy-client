@@ -1,57 +1,63 @@
 import Button from '@/components/commons/Button/Button.jsx';
-import { useState } from 'react';
 import { useStore } from '@/hooks/useStore.js';
 import { observer } from 'mobx-react-lite';
 import Loader from '@/components/commons/Loader/Loader.jsx';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+
+import '@/assets/styles/base.scss';
+import { loginSchema } from '@/schemas/login.schema.js';
 
 const LoginForm = observer(() => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
   const authStore = useStore().auth;
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+    setError,
+  } = useForm({
+    resolver: zodResolver(loginSchema),
+    mode: 'onChange',
+  });
+
+  const onSubmit = async (data) => {
+    try {
+      await authStore.login(data.email, data.password);
+    } catch (e) {
+      console.log(e);
+      setError('root', {
+        message: 'Неправильный email или пароль!',
+      });
+    }
+  };
+
   return (
-    <form className="form">
+    <form className="form" onSubmit={handleSubmit(onSubmit)}>
       <input
-        type="email"
+        {...register('email')}
+        type="text"
         placeholder="Email"
         className="input"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
       />
+      {errors.email && <div className="formError">{errors.email.message}</div>}
       <input
+        {...register('password')}
         type="password"
         placeholder="Пароль"
         className="input"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
       />
 
-      {authStore.isLoadingAuth ? (
-        <Button
-          disabled
-          color="primary"
-          type="submit"
-          className="cta"
-          onClick={(e) => {
-            e.preventDefault();
-            authStore.login(email, password);
-          }}
-        >
-          <Loader size="sm" color />
-        </Button>
-      ) : (
-        <Button
-          color="primary"
-          type="submit"
-          className="cta"
-          onClick={(e) => {
-            e.preventDefault();
-            authStore.login(email, password);
-          }}
-        >
-          Войти
-        </Button>
-      )}
+      <Button
+        disabled={isSubmitting}
+        color="primary"
+        type="submit"
+        className="cta"
+      >
+        {isSubmitting ? <Loader size="sm" color /> : 'Войти'}
+      </Button>
+
+      {errors.root && <div className="formError">{errors.root.message}</div>}
     </form>
   );
 });

@@ -26,8 +26,10 @@ export class FormStore {
   _questions = [];
   _isSubmitting = false;
 
+  _errors = {};
+
   constructor() {
-    makeAutoObservable(this);
+    makeAutoObservable(this, {}, { autoBind: true });
   }
 
   get quizFormData() {
@@ -46,26 +48,87 @@ export class FormStore {
     return this._isSubmitting;
   }
 
-  setField(name, value) {
-    this._quizFormData[name] = value;
+  setQuizFormData(data) {
+    this._quizFormData = data;
   }
 
-  setCreator(userId) {
-    this._quizFormData.creatorId = userId;
+  setQuestionFormData(data) {
+    this._questionFormData = data;
+  }
+
+  setQuestions(list) {
+    this._questions = list;
+  }
+
+  setIsSubmitting(bool) {
+    this._isSubmitting = bool;
+  }
+
+  setField(name, value) {
+    this._quizFormData = {
+      ...this._quizFormData,
+      [name]: value,
+    };
+  }
+
+  validateField(name, value) {
+    switch (name) {
+      case 'title':
+        if (!value.trim()) this._errors[name] = 'Название обязательно!';
+        else if (value.length < 6)
+          this._errors[name] = 'Название должно содержать минимум 6 символов';
+        else delete this._errors[name];
+        break;
+
+      case 'description':
+        if (value.length > 200) this._errors[name] = 'Максимум 200 символов';
+        else delete this._errors[name];
+        break;
+    }
+  }
+
+  validateForm() {
+    Object.keys(this.quizFormData).forEach((key) =>
+      this.validateField(key, this.quizFormData[key]),
+    );
+
+    return Object.keys(this._errors).length === 0;
+  }
+
+  setCreator(id) {
+    this._quizFormData = {
+      ...this._quizFormData,
+      creatorId: id,
+    };
   }
 
   setQuestionField(name, value) {
-    this._questionFormData[name] = value;
+    this._questionFormData = {
+      ...this._questionFormData,
+      [name]: value,
+    };
   }
 
   setAnswer(index, text) {
-    this._questionFormData.answers[index].text = text;
+    const updated = [...this._questionFormData.answers];
+    updated[index] = { ...updated[index], text };
+
+    this._questionFormData = {
+      ...this._questionFormData,
+      answers: updated,
+    };
   }
 
   markAsCorrect(index) {
-    this._questionFormData.answers.forEach((a, i) => {
-      a.isCorrect = i === index;
-    });
+    const updated = this._questionFormData.answers.map((a, i) => ({
+      ...a,
+      isCorrect: i === index,
+    }));
+
+    this._questionFormData = {
+      ...this._questionFormData,
+      answers: updated,
+    };
   }
 
   questionFormReset() {
@@ -92,50 +155,71 @@ export class FormStore {
     };
   }
 
+  validateQuestionForm() {
+    const { text, answers } = this.questionFormData;
+
+    this._errors = {};
+
+    if (!text.trim()) {
+      this._errors.text = 'Введите текст вопроса!';
+    } else if (text.length < 4) {
+      this._errors.text = 'Вопрос должен содержать минимум 4 символа!';
+    }
+
+    answers.forEach((answer, index) => {
+      if (!answer.text.trim()) {
+        this._errors[`answer_${index}`] = 'Ответ не может быть пустым!';
+      }
+    });
+
+    const hasCorrect = answers.some((a) => a.isCorrect);
+    if (!hasCorrect) {
+      this._errors.correct = 'Выберите правильный ответ!';
+    }
+
+    return Object.keys(this._errors).length === 0;
+  }
+
   async createQuestion(quizId) {
-    this._isSubmitting = true;
+    this.setIsSubmitting(true);
+
     try {
       const payload = {
         quizId,
         text: this._questionFormData.text.trim(),
-        answers: this._questionFormData.answers.map(({ text, isCorrect }) => ({
-          text: text.trim(),
-          isCorrect,
+        answers: this._questionFormData.answers.map((a) => ({
+          text: a.text.trim(),
+          isCorrect: a.isCorrect,
         })),
       };
 
-      const response = await QuestionService.createQuestion(
+      const res = await QuestionService.createQuestion(
         payload.quizId,
         payload.text,
         payload.answers,
       );
 
-      this._questions.push(response.data.question);
+      this.setQuestions([...this._questions, res.data.question]);
       this.questionFormReset();
-    } catch (error) {
-      console.error(
-        'Question creation error:',
-        error.response?.data || error.message,
-      );
+    } catch (e) {
+      this._errors.server = 'Ошибка при создании вопроса!';
+      console.error('Question creation error:', e.response?.data || e);
     } finally {
-      this._isSubmitting = false;
+      this.setIsSubmitting(false);
     }
   }
 
   async publishQuiz(quizId) {
-    this._isSubmitting = true;
+    this.setIsSubmitting(true);
+
     try {
-      const response = await QuizService.publishQuiz(quizId);
+      await QuizService.publishQuiz(quizId);
       this.reset();
-      this._questions = [];
-      alert('Квиз успешно опубликован!');
-    } catch (error) {
-      console.error(
-        'Publish quiz error:',
-        error.response?.data || error.message,
-      );
+      this.setQuestions([]);
+    } catch (e) {
+      console.error('Publish quiz error:', e.response?.data || e);
     } finally {
-      this._isSubmitting = false;
+      this.setIsSubmitting(false);
     }
   }
 }
