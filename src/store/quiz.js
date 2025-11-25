@@ -3,6 +3,8 @@ import QuizService from '@/services/QuizService.js';
 
 export class QuizStore {
   _quizzes = [];
+  _sortField = 'difficulty';
+  _reverse = false;
 
   _isLoading = false;
 
@@ -91,6 +93,10 @@ export class QuizStore {
     try {
       const quizzes = await QuizService.fetchPublishedQuizzes();
       this.setQuizzes(quizzes);
+
+      if (this._sortField) {
+        this.sortBy(this._sortField);
+      }
     } catch (e) {
       console.error('Fetch published quizzes error:', e);
       throw e;
@@ -183,5 +189,39 @@ export class QuizStore {
     } finally {
       this.setIsLoading(false);
     }
+  }
+
+  toggleReverse() {
+    this._reverse = !this._reverse;
+
+    if (this._sortField) {
+      this.sortBy(this._sortField);
+    }
+  }
+
+  sortBy(field) {
+    this._sortField = field;
+
+    const order = {
+      EASY: 1,
+      MEDIUM: 2,
+      HARD: 3,
+    };
+
+    let sorted = this._quizzes.slice().sort((a, b) => {
+      if (field === 'difficulty') {
+        return order[a.difficulty] - order[b.difficulty];
+      }
+
+      if (field === 'questionsCount') {
+        return a.questionCount - b.questionCount;
+      }
+
+      return 0;
+    });
+
+    if (this._reverse) sorted = sorted.reverse();
+
+    this._quizzes = sorted;
   }
 }

@@ -1,0 +1,29 @@
+@import '@/assets/styles/variables.scss';
+
+.select {
+  padding: 8px 12px;
+  font-size: 14px;
+
+  border: 1px solid $border;
+  border-radius: 6px;
+
+  background: $background-tile;
+  color: $text;
+
+  cursor: pointer;
+  transition: border 0.15s ease;
+
+  &:hover {
+    border-color: $text-light;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: $primary;
+  }
+}
+
+.option {
+  background: $background-tile;
+  color: $text;
+}

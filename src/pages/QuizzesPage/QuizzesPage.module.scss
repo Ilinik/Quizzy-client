@@ -50,6 +50,16 @@
   min-height: 200px;
 }
 
+.sortWrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  & > * {
+    height: 40px;
+  }
+}
+
 @media (max-width: 1400px) {
   .quizzesGrid {
     grid-template-columns: repeat(3, 1fr);

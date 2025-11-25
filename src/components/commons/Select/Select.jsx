@@ -8,9 +8,10 @@ const Select = ({
   options = [],
   required = false,
   disabled = false,
+  style,
 }) => {
   return (
-    <div className={styles.root}>
+    <div className={styles.root} style={style}>
       {label && (
         <label htmlFor={name} className={styles.label}>
           {label}
