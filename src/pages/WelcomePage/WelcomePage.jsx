@@ -13,7 +13,7 @@ const WelcomePage = () => {
       <section className={styles.hero}>
         <div className={styles.content}>
           <h1 className={styles.title}>
-            Прокачайте свои знания с интерактивными квизами
+            Прокачайте свои знания с интерактивными тестами
           </h1>
 
           <p className={styles.subtitle}>

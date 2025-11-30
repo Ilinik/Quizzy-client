@@ -11,9 +11,9 @@ const CreateQuizPage = () => {
 
       <main className={styles.main}>
         <section className={styles.card}>
-          <h1 className={styles.title}>Создать новый квиз</h1>
+          <h1 className={styles.title}>Создать новый тест</h1>
           <p className={styles.subtitle}>
-            Укажи основные данные квиза, а затем добавь вопросы
+            Укажи основные данные теста, а затем добавь вопросы
           </p>
           <CreateQuizForm />
         </section>

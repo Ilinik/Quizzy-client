@@ -6,7 +6,7 @@ export const Search = ({ className }) => {
       <div className={styles.searchInputWrapper}>
         <input
           type="text"
-          placeholder="Найти квиз"
+          placeholder="Найти тест"
           className={styles.searchInput}
         />
         <img

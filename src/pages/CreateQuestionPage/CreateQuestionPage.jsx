@@ -16,7 +16,7 @@ const CreateQuestionPage = observer(() => {
       <main className={styles.main}>
         <section className={styles.card}>
           <h1 className={styles.title}>Меню создания вопросов</h1>
-          <p className={styles.subtitle}>Создайте вопросы для своего квиз</p>
+          <p className={styles.subtitle}>Создайте вопросы для своего теста</p>
           <CreateQuestionForm quizId={quizId} />
         </section>
 

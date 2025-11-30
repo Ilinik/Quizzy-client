@@ -9,12 +9,12 @@ import { X } from 'lucide-react';
 export const Sidebar = ({ isOpen, setOpen }) => {
   const link = [
     {
-      name: 'Квизы',
+      name: 'Тесты',
       image: <Quizes />,
       to: staticLinks.quizzes,
     },
     {
-      name: 'Мои квизы',
+      name: 'Мои тесты',
       image: <Folder />,
       to: staticLinks.myQuizzes,
     },

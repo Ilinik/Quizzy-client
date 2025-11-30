@@ -45,17 +45,17 @@ const CreateQuizForm = observer(() => {
       if (quizId) {
         navigate(`/create-quiz/${quizId}/questions`);
       } else {
-        console.error('Не удалось получить id квиза');
+        console.error('Не удалось получить id теста');
       }
     } catch (error) {
-      console.error('Ошибка при создании квиза:', error);
+      console.error('Ошибка при создании теста:', error);
     }
   };
 
   return (
     <form className={styles.form}>
       <Input
-        label="Название квиза"
+        label="Название теста"
         name="title"
         value={formData.title}
         onChange={handleChange}
@@ -160,7 +160,7 @@ const CreateQuizForm = observer(() => {
             await handleSubmit(e);
           }}
         >
-          Создать квиз
+          Создать тест
         </Button>
         <Button
           variant="outline"

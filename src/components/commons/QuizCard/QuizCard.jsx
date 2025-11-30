@@ -18,12 +18,12 @@ const QuizCard = ({ quiz, quizId, variant = 'default' }) => {
 
   const handlePublish = () => {
     quizStore.publishQuiz(quizId);
-    alert('Квиз опубликован');
+    alert('Тест опубликован');
   };
 
   const deleteQuiz = () => {
     quizStore.deleteQuiz(quizId);
-    alert('Квиз удален!');
+    alert('Тест удален!');
   };
 
   return (
@@ -76,7 +76,7 @@ const QuizCard = ({ quiz, quizId, variant = 'default' }) => {
               navigate(`/quizzes/${quizId}`);
             }}
           >
-            Начать квиз
+            Начать тест
           </Button>
         )}
       </div>

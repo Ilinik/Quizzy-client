@@ -1,4 +1,4 @@
-@import '@/assets/styles/variables.scss';
+@use '@/assets/styles/variables.scss' as *;
 
 .select {
   padding: 8px 12px;

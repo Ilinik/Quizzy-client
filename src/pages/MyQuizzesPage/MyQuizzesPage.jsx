@@ -18,8 +18,8 @@ const MyQuizzesPage = observer(() => {
     <WhiteTile>
       <div className={styles.titleWrapper}>
         <PageTitle
-          title="Список ваших квизов"
-          subtitle="Создавайте, редактируйте и публикуйте свои квизы."
+          title="Список ваших тестов"
+          subtitle="Создавайте, редактируйте и публикуйте свои тесты"
         />
       </div>
 
@@ -36,7 +36,7 @@ const MyQuizzesPage = observer(() => {
         ) : (
           <div className={styles.quizStatus}>
             У вас пока нет созданных квизов. Добавьте свой первый на странице
-            «Квизы».
+            «Тесты».
           </div>
         )}
       </div>

@@ -27,7 +27,7 @@ const QuizzesPage = observer(() => {
     <WhiteTile>
       <div className={styles.titleWrapper}>
         <PageTitle
-          title="Библиотека квизов"
+          title="Библиотека тестов"
           subtitle="Погрузитесь в мир увлекательных викторин и тестов!"
         />
         <div className={styles.rightSide}>
@@ -36,7 +36,7 @@ const QuizzesPage = observer(() => {
               navigate('/create-quiz');
             }}
           >
-            Добавить квиз
+            Добавить тест
           </Button>
         </div>
       </div>
