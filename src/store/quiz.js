@@ -4,6 +4,7 @@ import QuizService from '@/services/QuizService.js';
 export class QuizStore {
   _quizzes = [];
   _sortField = 'difficulty';
+  _searchValue = '';
   _reverse = false;
 
   _isLoading = false;
@@ -16,6 +17,10 @@ export class QuizStore {
 
   constructor() {
     makeAutoObservable(this);
+  }
+
+  get searchValue() {
+    return this._searchValue;
   }
 
   get isLoading() {
@@ -72,6 +77,10 @@ export class QuizStore {
 
   setIsFinished(bool) {
     this._isFinished = bool;
+  }
+
+  setSearchValue(value) {
+    this._searchValue = value;
   }
 
   async createQuiz(quizData) {
@@ -222,6 +231,20 @@ export class QuizStore {
 
     if (this._reverse) sorted = sorted.reverse();
 
-    this._quizzes = sorted;
+    this.setQuizzes(sorted);
+  }
+
+  async searchQuiz(e) {
+    this.setSearchValue(e.target.value);
+
+    const searchedQuizzes = this._quizzes.filter((item) =>
+      item.title.toLowerCase().includes(this._searchValue.toLowerCase()),
+    );
+
+    if (this.searchValue !== '') {
+      this.setQuizzes(searchedQuizzes);
+    } else {
+      this.fetchPublishedQuizzes();
+    }
   }
 }

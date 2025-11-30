@@ -28,7 +28,7 @@ export const Profile = observer(() => {
     <div className={styles.profileWrapper} ref={menuRef}>
       <div className={styles.profile} onClick={handleToggleMenu}>
         <img
-          src="/images/profile-picture.png"
+          src="https://avatar.iran.liara.run/public"
           alt="profile"
           className={styles.profilePicture}
         />

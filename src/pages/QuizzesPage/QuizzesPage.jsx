@@ -10,7 +10,6 @@ import { ArrowDownFromLine } from 'lucide-react';
 import styles from './QuizzesPage.module.scss';
 import PageTitle from '@/components/commons/PageTitle/PageTitle.jsx';
 import SortSelect from '@/components/commons/SortSelect/SortSelect.jsx';
-import { Search } from '@/components/commons/Search/Search.jsx';
 import Input from '@/components/commons/Input/Input.jsx';
 
 const QuizzesPage = observer(() => {
@@ -23,6 +22,10 @@ const QuizzesPage = observer(() => {
 
   const sortQuizzes = (field) => {
     quizStore.sortBy(field);
+  };
+
+  const searchQuizzes = (value) => {
+    quizStore.searchQuiz(value);
   };
 
   return (
@@ -47,6 +50,8 @@ const QuizzesPage = observer(() => {
         style={{ maxWidth: '350px', marginBottom: 25 }}
         label={`Найти нужный тест`}
         placeholder="Укажите название теста"
+        value={quizStore._searchValue}
+        onChange={searchQuizzes}
       />
 
       <div className={styles.sortWrapper}>
