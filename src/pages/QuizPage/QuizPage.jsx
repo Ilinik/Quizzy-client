@@ -1,4 +1,4 @@
-import { Header } from '@/components/commons/Header/Header.jsx';
+import { Header } from '@/components/layouts/Header/Header.jsx';
 import Loader from '@/components/commons/Loader/Loader.jsx';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useStore } from '@/hooks/useStore.js';
@@ -28,6 +28,25 @@ const QuizPage = observer(() => {
   }
 
   const quiz = quizStore.currentQuiz;
+
+  if (!quiz.questions || quiz.questions.length === 0) {
+    return (
+      <div className={styles.wrapper}>
+        <Header showSearch={false} />
+
+        <main className={styles.main}>
+          <section className={styles.quizCard}>
+            <h1 className={styles.title}>{quiz.title}</h1>
+            {quiz.description && (
+              <p className={styles.description}>{quiz.description}</p>
+            )}
+
+            <p>Этот квиз пока не содержит вопросов.</p>
+          </section>
+        </main>
+      </div>
+    );
+  }
 
   const randomQuestionId =
     quiz.questions[Math.floor(Math.random() * quiz.questions.length)].id;

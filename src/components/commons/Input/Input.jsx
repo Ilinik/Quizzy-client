@@ -8,9 +8,10 @@ const Input = ({
   placeholder,
   type = 'text',
   required = false,
+  style,
 }) => {
   return (
-    <div className={styles.root}>
+    <div style={style} className={styles.root}>
       {label && (
         <label className={styles.label} htmlFor={name}>
           {label}

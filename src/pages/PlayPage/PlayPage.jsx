@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Header } from '@/components/commons/Header/Header.jsx';
+import { Header } from '@/components/layouts/Header/Header.jsx';
 import Button from '@/components/commons/Button/Button.jsx';
 import { observer } from 'mobx-react-lite';
 import { useStore } from '@/hooks/useStore.js';

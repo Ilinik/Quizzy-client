@@ -1,5 +1,5 @@
-import { Header } from '../../commons/Header/Header.jsx';
-import { Sidebar } from '../../commons/Sidebar/Sidebar.jsx';
+import { Header } from '../Header/Header.jsx';
+import { Sidebar } from '../Sidebar/Sidebar.jsx';
 import styles from './Layout.module.scss';
 import Button from '@/components/commons/Button/Button.jsx';
 import { useState } from 'react';

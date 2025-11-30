@@ -1,4 +1,4 @@
-import { Header } from '@/components/commons/Header/Header.jsx';
+import { Header } from '@/components/layouts/Header/Header.jsx';
 import CreateQuizForm from '@/pages/CreateQuizPage/CreateQuizForm/CreateQuizForm.jsx';
 
 import styles from './CreateQuizPage.module.scss';

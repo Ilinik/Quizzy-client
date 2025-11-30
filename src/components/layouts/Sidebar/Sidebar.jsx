@@ -1,6 +1,6 @@
-import { SidebarLink } from '../SidebarLink/SidebarLink';
-import { staticLinks } from '../../../config/staticLinks';
-import { Quizes } from '../../icons/Quizes';
+import { SidebarLink } from '../../commons/SidebarLink/SidebarLink.jsx';
+import { staticLinks } from '../../../config/staticLinks.js';
+import { Quizes } from '../../icons/Quizes.jsx';
 import Folder from '@/components/icons/Folder.jsx';
 import styles from './Sidebar.module.scss';
 import Button from '@/components/commons/Button/Button.jsx';

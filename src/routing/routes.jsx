@@ -1,6 +1,5 @@
 import App from '../App.jsx';
 import { createBrowserRouter } from 'react-router-dom';
-import HomePage from '../pages/HomePage/HomePage.jsx';
 import QuizzesPage from '../pages/QuizzesPage/QuizzesPage.jsx';
 import QuizPage from '../pages/QuizPage/QuizPage.jsx';
 import ResultPage from '../pages/ResultPage/ResultPage.jsx';

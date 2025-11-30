@@ -1,4 +1,4 @@
-import { Header } from '@/components/commons/Header/Header.jsx';
+import { Header } from '@/components/layouts/Header/Header.jsx';
 import { observer } from 'mobx-react-lite';
 import { useStore } from '@/hooks/useStore.js';
 import { useNavigate } from 'react-router-dom';

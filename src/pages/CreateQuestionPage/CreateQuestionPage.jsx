@@ -1,4 +1,4 @@
-import { Header } from '@/components/commons/Header/Header.jsx';
+import { Header } from '@/components/layouts/Header/Header.jsx';
 import CreateQuestionForm from '@/pages/CreateQuestionPage/CreateQuestionForm/CreateQuestionForm.jsx';
 import { useParams } from 'react-router-dom';
 import { useStore } from '@/hooks/useStore.js';

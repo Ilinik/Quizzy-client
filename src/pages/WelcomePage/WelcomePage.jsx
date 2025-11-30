@@ -1,4 +1,4 @@
-import { Header } from '@/components/commons/Header/Header.jsx';
+import { Header } from '@/components/layouts/Header/Header.jsx';
 import Button from '@/components/commons/Button/Button.jsx';
 import styles from './WelcomePage.module.scss';
 import { useNavigate } from 'react-router-dom';
