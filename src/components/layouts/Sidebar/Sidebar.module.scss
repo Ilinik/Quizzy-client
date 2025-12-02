@@ -3,13 +3,14 @@
 .sidebar {
   display: flex;
   flex-direction: column;
-  position: sticky;
+  position: fixed;
   top: $header-height;
   height: calc(100vh - $header-height);
   max-height: calc(100vh - $header-height);
   flex-shrink: 0;
   z-index: 2000;
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
 
   @media (max-width: 1120px) {
     position: fixed;

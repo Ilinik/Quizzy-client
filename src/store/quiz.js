@@ -265,7 +265,7 @@ export class QuizStore {
     if (this.searchValue !== '') {
       this.setQuizzes(searchedQuizzes);
     } else {
-      this.fetchPublishedQuizzes();
+      this.fetchInitialPublished();
     }
   }
 }
