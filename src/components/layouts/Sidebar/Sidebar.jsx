@@ -41,6 +41,7 @@ export const Sidebar = ({ isOpen, setOpen }) => {
             setOpen(false);
           }}
         >
+          Закрыть меню
           <X color="#3b82f6" />
         </Button>
       )}

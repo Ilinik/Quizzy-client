@@ -7,6 +7,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 
 import '@/assets/styles/base.scss';
 import { loginSchema } from '@/schemas/login.schema.js';
+import clsx from 'clsx';
 
 const LoginForm = observer(() => {
   const authStore = useStore().auth;
@@ -58,6 +59,12 @@ const LoginForm = observer(() => {
       </Button>
 
       {errors.root && <div className="formError">{errors.root.message}</div>}
+
+      {authStore.loginError && (
+        <div className={clsx('formError', 'formErrorCenter')}>
+          Неправильный email или пароль!
+        </div>
+      )}
     </form>
   );
 });

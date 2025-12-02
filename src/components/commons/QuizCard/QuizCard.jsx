@@ -38,6 +38,10 @@ const QuizCard = ({ quiz, quizId, variant = 'default' }) => {
           <p className={styles.quizCardDescription}>{quiz.description}</p>
         </div>
 
+        <p className={styles.creator}>
+          Автор: {quiz.creator?.name || 'Аноним'}
+        </p>
+
         <div className={styles.quizCardMeta}>
           <span className={styles.quizCardQuestions}>
             {quiz.questionCount} вопросов

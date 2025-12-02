@@ -8,6 +8,8 @@ export class AuthStore {
   _isAuth = false;
   _isLoading = false;
   _isRefreshing = false;
+  _loginError = false;
+  _registrationError = false;
 
   constructor() {
     makeAutoObservable(this);
@@ -31,6 +33,14 @@ export class AuthStore {
     return this._user;
   }
 
+  get loginError() {
+    return this._loginError;
+  }
+
+  get registrationError() {
+    return this._registrationError;
+  }
+
   setAuth(bool) {
     this._isAuth = bool;
   }
@@ -47,24 +57,36 @@ export class AuthStore {
     this._isRefreshing = bool;
   }
 
+  setLoginError(bool) {
+    this._loginError = bool;
+  }
+
+  setRegistrationError(bool) {
+    this._registrationError = bool;
+  }
+
   async login(email, password) {
+    this.setLoginError(false);
     try {
       const response = await AuthService.login(email, password);
       localStorage.setItem('token', response.data.tokens.accessToken);
       this.setAuth(true);
       this.setUser(response.data.user);
     } catch (e) {
+      this.setLoginError(true);
       console.log(e.response?.data?.message);
     }
   }
 
   async registration(name, email, password) {
+    this.setLoginError(false);
     try {
       const response = await AuthService.registration(name, email, password);
       localStorage.setItem('token', response.data.tokens.accessToken);
       this.setAuth(true);
       this.setUser(response.data.user);
     } catch (e) {
+      this.setLoginError(true);
       console.log(e.response?.data?.message);
     }
   }
