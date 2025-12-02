@@ -3,6 +3,11 @@ import QuizService from '@/services/QuizService.js';
 
 export class QuizStore {
   _quizzes = [];
+
+  page = 1;
+  limit = 8;
+  hasMore = true;
+
   _sortField = 'difficulty';
   _searchValue = '';
   _reverse = false;
@@ -97,18 +102,34 @@ export class QuizStore {
     }
   }
 
-  async fetchPublishedQuizzes() {
+  async fetchInitialPublished() {
+    this.page = 1;
+    this.setQuizzes([]);
+    this.hasMore = true;
+
+    await this.fetchMorePublishedQuizzes();
+  }
+
+  async fetchMorePublishedQuizzes() {
+    if (this._isLoading || !this.hasMore) return;
+
     this.setIsLoading(true);
     try {
-      const quizzes = await QuizService.fetchPublishedQuizzes();
-      this.setQuizzes(quizzes);
+      const data = await QuizService.fetchPublishedQuizzes(
+        this.page,
+        this.limit,
+      );
+
+      this._quizzes.push(...data.items);
+
+      this.hasMore = data.hasMore;
+      this.page += 1;
 
       if (this._sortField) {
         this.sortBy(this._sortField);
       }
     } catch (e) {
       console.error('Fetch published quizzes error:', e);
-      throw e;
     } finally {
       this.setIsLoading(false);
     }
@@ -244,7 +265,7 @@ export class QuizStore {
     if (this.searchValue !== '') {
       this.setQuizzes(searchedQuizzes);
     } else {
-      this.fetchPublishedQuizzes();
+      this.fetchInitialPublished();
     }
   }
 }

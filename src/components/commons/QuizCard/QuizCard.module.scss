@@ -9,15 +9,20 @@
     transform 0.2s ease,
     border-color 0.2s ease,
     background-color 0.2s ease;
+
   display: flex;
   flex-direction: column;
   height: 100%;
+  min-height: 340px;
+  box-sizing: border-box;
 
   @media (max-width: 720px) {
+    min-height: 300px;
     padding: 18px;
   }
 
   @media (max-width: 480px) {
+    min-height: 260px;
     padding: 14px;
   }
 
@@ -32,7 +37,7 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
-  height: 100%;
+  flex: 1;
 }
 
 .quizCardIcon {
@@ -57,27 +62,32 @@
 .quizCardInfo {
   text-align: center;
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .quizCardTitle {
   font-size: 20px;
   font-weight: 700;
   color: $text;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
+  overflow: hidden;
 }
 
 .quizCardDescription {
   font-size: 15px;
   color: $text-inactive;
   line-height: 1.5;
+  overflow: hidden;
 }
 
 .quizCardMeta {
+  margin-top: auto;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   gap: 8px;
-  margin-top: auto;
 
   span {
     flex: 1 1 auto;
@@ -92,6 +102,13 @@
     color: $text;
     transition: background-color 0.2s ease;
   }
+}
+
+.creator {
+  font-size: 14px;
+  color: $text-inactive;
+  text-align: center;
+  margin-top: -4px;
 }
 
 .quizCardQuestions {

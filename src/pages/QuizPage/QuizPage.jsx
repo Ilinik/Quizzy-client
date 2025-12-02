@@ -57,34 +57,44 @@ const QuizPage = observer(() => {
 
       <main className={styles.main}>
         <section className={styles.quizCard}>
-          <h1 className={styles.title}>{quiz.title}</h1>
-          {quiz.description && (
-            <p className={styles.description}>{quiz.description}</p>
-          )}
+          <div className={styles.header}>
+            <h1 className={styles.title}>{quiz.title}</h1>
+            {quiz.description && (
+              <p className={styles.description}>{quiz.description}</p>
+            )}
+          </div>
 
-          <div className={styles.info}>
-            <p>
-              Уровень сложности:{' '}
+          <div className={styles.infoGrid}>
+            <div className={styles.infoBlock}>
+              <span className={styles.infoLabel}>Сложность</span>
               <span
-                className={`${styles.difficulty} ${getDifficultyColor(
+                className={`${styles.infoValue} ${getDifficultyColor(
                   quiz.difficulty,
                   styles,
                 )}`}
               >
                 {getDisplayName(quiz.difficulty, 'difficulty')}
               </span>
-            </p>
+            </div>
 
-            <p>
-              Категория:{' '}
-              <span className={styles.category}>
+            <div className={styles.infoBlock}>
+              <span className={styles.infoLabel}>Категория</span>
+              <span className={`${styles.infoValue} ${styles.category}`}>
                 {getDisplayName(quiz.category, 'category')}
               </span>
-            </p>
+            </div>
 
-            <p>
-              Вопросов: <strong>{quiz.questions.length}</strong>
-            </p>
+            <div className={styles.infoBlock}>
+              <span className={styles.infoLabel}>Вопросов</span>
+              <span className={styles.infoValue}>{quiz.questions.length}</span>
+            </div>
+
+            <div className={styles.infoBlock}>
+              <span className={styles.infoLabel}>Автор</span>
+              <span className={styles.infoValue}>
+                {quiz.creator?.name || 'Аноним'}
+              </span>
+            </div>
           </div>
 
           <Button

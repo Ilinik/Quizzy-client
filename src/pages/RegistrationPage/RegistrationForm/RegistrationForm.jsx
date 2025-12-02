@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Loader from '@/components/commons/Loader/Loader.jsx';
 import { registrationSchema } from '@/schemas/registration.schema.js';
+import clsx from 'clsx';
 
 const RegistrationForm = () => {
   const authStore = useStore().auth;
@@ -66,6 +67,12 @@ const RegistrationForm = () => {
       </Button>
 
       {errors.root && <div className="formError">{errors.root.message}</div>}
+
+      {authStore.registrationError && (
+        <div className={clsx('formError', 'formErrorCenter')}>
+          Произошла ошибка при регистрации!
+        </div>
+      )}
     </form>
   );
 };

@@ -34,6 +34,10 @@ body {
   animation: fadeIn 0.3s ease-out;
 }
 
+.formErrorCenter {
+  align-self: center;
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;
