@@ -12,6 +12,10 @@ body {
   width: 100%;
   margin: 0 auto;
   padding: 0 20px;
+
+  @media (max-width: 1024px) {
+    padding: 0 12px;
+  }
 }
 
 .loaderWrapper {
@@ -24,7 +28,7 @@ body {
 
 .formError {
   color: $danger;
-  font-size: 14px;
+  font-size: clamp(0.75rem, 0.708rem + 0.185vw, 0.875rem);
   align-self: flex-start;
 
   animation: fadeIn 0.3s ease-out;
