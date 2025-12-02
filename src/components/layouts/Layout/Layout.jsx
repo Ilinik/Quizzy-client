@@ -3,6 +3,7 @@ import { Sidebar } from '../Sidebar/Sidebar.jsx';
 import styles from './Layout.module.scss';
 import Button from '@/components/commons/Button/Button.jsx';
 import { useState } from 'react';
+import Footer from '@/components/layouts/Footer/Footer.jsx';
 
 const Layout = ({ children }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -27,6 +28,10 @@ const Layout = ({ children }) => {
 
           <div className={styles.content}>{children}</div>
         </main>
+      </div>
+
+      <div className="container">
+        <Footer />
       </div>
     </>
   );
