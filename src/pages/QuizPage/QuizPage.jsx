@@ -41,7 +41,7 @@ const QuizPage = observer(() => {
               <p className={styles.description}>{quiz.description}</p>
             )}
 
-            <p>Этот квиз пока не содержит вопросов.</p>
+            <p>Этот тест пока не содержит вопросов.</p>
           </section>
         </main>
       </div>
@@ -95,7 +95,7 @@ const QuizPage = observer(() => {
               navigate(`/quizzes/${quiz.id}/play/${randomQuestionId}`)
             }
           >
-            Начать квиз
+            Начать тест
           </Button>
         </section>
       </main>

@@ -6,6 +6,7 @@ import { useStore } from '@/hooks/useStore.js';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import styles from './PlayPage.module.scss';
+import Loader from '@/components/commons/Loader/Loader.jsx';
 
 const PlayPage = observer(() => {
   const { quizId } = useParams();
@@ -17,7 +18,11 @@ const PlayPage = observer(() => {
   }, [quizId]);
 
   if (!playStore.isLoaded) {
-    return <div className={styles.wrapper}>Загрузка...</div>;
+    return (
+      <div className={styles.loaderWrapper}>
+        <Loader size="lg" />
+      </div>
+    );
   }
 
   if (playStore.error) {
