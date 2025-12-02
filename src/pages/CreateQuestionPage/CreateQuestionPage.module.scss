@@ -117,3 +117,19 @@
   color: $success;
   font-weight: 600;
 }
+
+@media (max-width: 720px) {
+  .main {
+    padding: 0;
+  }
+
+  .card {
+    border-radius: 12px;
+    padding: 20px;
+  }
+
+  .questionsSection {
+    border-radius: 12px;
+    padding: 20px;
+  }
+}

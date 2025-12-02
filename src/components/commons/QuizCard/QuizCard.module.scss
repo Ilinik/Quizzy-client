@@ -13,6 +13,14 @@
   flex-direction: column;
   height: 100%;
 
+  @media (max-width: 720px) {
+    padding: 18px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 14px;
+  }
+
   &:hover {
     transform: translateY(-3px);
     border-color: rgba($text, 0.15);

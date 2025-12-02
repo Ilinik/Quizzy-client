@@ -27,7 +27,8 @@ const ResultPage = observer(() => {
             Вы ответили правильно на{' '}
             <strong>
               {correct} / {total}
-            </strong>
+            </strong>{' '}
+            вопросов
           </p>
 
           <div className={styles.questionsList}>
@@ -67,7 +68,7 @@ const ResultPage = observer(() => {
             className={styles.backButton}
             onClick={() => navigate('/')}
           >
-            Вернуться к квизам
+            Вернуться к тестам
           </Button>
         </section>
       </main>

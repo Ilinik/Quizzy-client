@@ -10,7 +10,7 @@
   display: grid;
   align-items: center;
   grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
+  gap: 20px;
 }
 
 .field {
@@ -21,8 +21,8 @@
 
 .radio {
   appearance: none;
-  width: 16px;
-  height: 16px;
+  width: 18px;
+  height: 18px;
   border: 2px solid var(--color-border, #4b5563);
   border-radius: 50%;
   position: relative;
@@ -31,9 +31,15 @@
   display: inline-block;
   flex-shrink: 0;
 
-  &:hover {
-    border-color: var(--color-accent, #60a5fa);
-    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.25);
+  &:checked::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    width: 7px;
+    height: 7px;
+    background: white;
+    border-radius: 50%;
   }
 
   &:checked {
@@ -41,28 +47,20 @@
     background-color: var(--color-accent, #3b82f6);
   }
 
-  &:checked::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 6px;
-    height: 6px;
-    background: white;
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    transition: all 0.2s ease;
+  &:hover {
+    border-color: var(--color-accent, #60a5fa);
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.25);
   }
 }
 
 .radioLabel {
   display: flex;
-  gap: 8px;
+  gap: 10px;
   align-items: center;
 }
 
 .radioText {
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 500;
   color: $text;
 }
@@ -70,34 +68,106 @@
 .buttons {
   align-self: flex-end;
   display: flex;
-  gap: 10px;
+  gap: 12px;
   align-items: center;
 }
 
 .completeButton {
-  margin-top: 10px;
-  max-width: 300px;
+  margin-top: 14px;
+  max-width: 320px;
   width: 100%;
   align-self: center;
 }
 
-@media (max-width: 740px) {
+@media (max-width: 1024px) {
+  .questions {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .radioText {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 768px) {
   .questions {
     grid-template-columns: repeat(1, 1fr);
+    gap: 16px;
+  }
+
+  .radio {
+    width: 16px;
+    height: 16px;
+
+    &:checked::after {
+      width: 6px;
+      height: 6px;
+    }
+  }
+
+  .radioText {
+    font-size: 14px;
+  }
+
+  .buttons {
+    gap: 10px;
+  }
+
+  .completeButton {
+    max-width: 260px;
+  }
+}
+
+@media (max-width: 600px) {
+  .form {
+    gap: 16px;
+  }
+
+  .questions {
+    gap: 14px;
+  }
+
+  .radioLabel {
+    gap: 8px;
+  }
+
+  .radioText {
+    font-size: 13.5px;
   }
 }
 
 @media (max-width: 480px) {
   .buttons {
     flex-direction: column;
-    width: 150px;
+    width: 160px;
 
     > * {
-      width: 150px;
+      width: 160px;
     }
   }
 
   .completeButton {
     max-width: none;
+  }
+
+  .radio {
+    width: 15px;
+    height: 15px;
+
+    &:checked::after {
+      width: 5px;
+      height: 5px;
+    }
+  }
+}
+
+@media (max-width: 360px) {
+  .radioText {
+    font-size: 13px;
+  }
+
+  .questions {
+    gap: 12px;
   }
 }

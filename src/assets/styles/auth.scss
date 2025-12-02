@@ -7,6 +7,10 @@
   justify-content: center;
   align-items: center;
   padding: 40px 20px;
+
+  @media (max-width: 660px) {
+    padding: 0;
+  }
 }
 
 .card {
@@ -15,19 +19,23 @@
   border-radius: 16px;
   box-shadow: 0 12px 30px rgba($text, 0.1);
   width: 100%;
-  max-width: 420px;
+  max-width: 560px;
   text-align: center;
+
+  @media (max-width: 660px) {
+    max-width: 100%;
+  }
 }
 
 .title {
-  font-size: 28px;
+  font-size: clamp(1.25rem, 1.083rem + 0.741vw, 1.75rem);
   font-weight: 700;
   color: $text;
   margin-bottom: 10px;
 }
 
 .subtitle {
-  font-size: 16px;
+  font-size: clamp(0.875rem, 0.833rem + 0.185vw, 1rem);
   color: $text-inactive;
   margin-bottom: 30px;
 }
@@ -37,6 +45,10 @@
   flex-direction: column;
   gap: 14px;
   text-align: left;
+
+  @media (max-width: 660px) {
+    gap: 10px;
+  }
 
   .input {
     padding: 12px 16px;
@@ -50,18 +62,22 @@
     &:focus {
       border-color: $primary;
     }
+
+    @media (max-width: 560px) {
+      padding: 10px;
+    }
   }
 }
 
 .cta {
   width: 100%;
-  font-size: 16px;
+  font-size: clamp(0.875rem, 0.833rem + 0.185vw, 1rem);
   padding: 12px 0;
 }
 
 .switch {
   margin-top: 20px;
-  font-size: 14px;
+  font-size: clamp(0.75rem, 0.708rem + 0.185vw, 0.875rem);
   color: $text-inactive;
 
   &__link {
