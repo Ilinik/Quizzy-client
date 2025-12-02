@@ -11,8 +11,10 @@ export default class QuizService {
     return response.data;
   }
 
-  static async fetchPublishedQuizzes() {
-    const response = await $api.get('/quiz/published');
+  static async fetchPublishedQuizzes(page = 1, limit = 8) {
+    const response = await $api.get('/quiz/published', {
+      params: { page, limit },
+    });
     return response.data;
   }
 

@@ -4,20 +4,39 @@ import QuizCard from '@/components/commons/QuizCard/QuizCard.jsx';
 import { useStore } from '@/hooks/useStore.js';
 import Button from '@/components/commons/Button/Button.jsx';
 import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { ArrowDownFromLine } from 'lucide-react';
 
 import styles from './QuizzesPage.module.scss';
 import PageTitle from '@/components/commons/PageTitle/PageTitle.jsx';
 import SortSelect from '@/components/commons/SortSelect/SortSelect.jsx';
 import Input from '@/components/commons/Input/Input.jsx';
+import Loader from '@/components/commons/Loader/Loader.jsx';
 
 const QuizzesPage = observer(() => {
   const quizStore = useStore().quiz;
   const navigate = useNavigate();
+  const loaderRef = useRef(null);
 
   useEffect(() => {
-    quizStore.fetchPublishedQuizzes();
+    quizStore.fetchInitialPublished();
+  }, []);
+
+  useEffect(() => {
+    if (!loaderRef.current) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          quizStore.fetchMorePublishedQuizzes();
+        }
+      },
+      { threshold: 1 },
+    );
+
+    observer.observe(loaderRef.current);
+
+    return () => observer.disconnect();
   }, []);
 
   const sortQuizzes = (field) => {
@@ -86,6 +105,14 @@ const QuizzesPage = observer(() => {
           <div className={styles.quizStatus}>Не удалось найти квизы</div>
         )}
       </div>
+
+      <div ref={loaderRef} style={{ height: 40 }} />
+
+      {quizStore.isLoading && (
+        <div className={styles.loaderWrapper}>
+          <Loader size="md" />
+        </div>
+      )}
     </WhiteTile>
   );
 });

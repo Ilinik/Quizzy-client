@@ -62,6 +62,12 @@
   }
 }
 
+.loaderWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 @media (max-width: 1400px) {
   .quizzesGrid {
     grid-template-columns: repeat(3, 1fr);
