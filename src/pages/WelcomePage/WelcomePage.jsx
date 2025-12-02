@@ -2,6 +2,7 @@ import { Header } from '@/components/layouts/Header/Header.jsx';
 import Button from '@/components/commons/Button/Button.jsx';
 import styles from './WelcomePage.module.scss';
 import { useNavigate } from 'react-router-dom';
+import Footer from '@/components/layouts/Footer/Footer.jsx';
 
 const WelcomePage = () => {
   const navigate = useNavigate();
@@ -33,9 +34,7 @@ const WelcomePage = () => {
         <div className={styles.illustration} />
       </section>
 
-      <footer className={styles.footer}>
-        <p>© {new Date().getFullYear()} Quizzy. Все права защищены.</p>
-      </footer>
+      <Footer />
     </div>
   );
 };

@@ -72,6 +72,25 @@
   margin-top: 16px;
 }
 
+.loaderWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: $background;
+}
+
+@media (max-width: 720px) {
+  .main {
+    padding: 0;
+  }
+
+  .card {
+    border-radius: 12px;
+    padding: 20px;
+  }
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;

@@ -94,3 +94,14 @@
   align-self: flex-start;
   margin-top: 16px;
 }
+
+@media (max-width: 720px) {
+  .main {
+    padding: 0;
+  }
+
+  .resultCard {
+    border-radius: 12px;
+    padding: 20px;
+  }
+}

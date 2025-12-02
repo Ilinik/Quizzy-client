@@ -37,6 +37,10 @@
   max-width: 550px;
 
   @media (max-width: 900px) {
+    max-width: 70%;
+  }
+
+  @media (max-width: 560px) {
     max-width: 100%;
   }
 }
@@ -47,6 +51,10 @@
   color: $text;
   margin-bottom: 20px;
   line-height: 1.2;
+
+  @media (max-width: 440px) {
+    font-size: 24px;
+  }
 }
 
 .subtitle {
