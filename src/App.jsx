@@ -1,8 +1,8 @@
-import Layout from './components/layouts/Layout/Layout';
-import { Outlet } from 'react-router-dom';
-import { useStore } from '@/hooks/useStore.js';
 import Loader from '@/components/commons/Loader/Loader.jsx';
+import { useStore } from '@/hooks/useStore.js';
 import { observer } from 'mobx-react-lite';
+import { Outlet } from 'react-router-dom';
+import Layout from './components/layouts/Layout/Layout';
 
 const App = observer(() => {
   const authStore = useStore().auth;
