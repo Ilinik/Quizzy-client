@@ -1,7 +1,7 @@
-import { makeAutoObservable } from 'mobx';
+import { API_URL } from '@/http/index.js';
 import AuthService from '@/services/AuthService.js';
 import axios from 'axios';
-import { API_URL } from '@/http/index.js';
+import { makeAutoObservable } from 'mobx';
 
 export class AuthStore {
   _user = {};
@@ -13,8 +13,6 @@ export class AuthStore {
 
   constructor() {
     makeAutoObservable(this);
-
-    this.checkAuth();
   }
 
   get isLoading() {
@@ -94,6 +92,7 @@ export class AuthStore {
   async logout() {
     try {
       const response = await AuthService.logout();
+      console.log(response);
       localStorage.removeItem('token');
       this.setAuth(false);
       this.setUser({});

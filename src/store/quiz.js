@@ -88,6 +88,10 @@ export class QuizStore {
     this._searchValue = value;
   }
 
+  addQuizzes(newQuizzes) {
+    this._quizzes.push(...newQuizzes);
+  }
+
   async createQuiz(quizData) {
     this.setIsLoading(true);
     try {
@@ -126,7 +130,7 @@ export class QuizStore {
         return;
       }
 
-      this._quizzes.push(...data);
+      this.addQuizzes(data);
 
       this.hasMore = data.length === this.limit;
       this.page += 1;
