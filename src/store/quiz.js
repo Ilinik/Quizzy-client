@@ -1,5 +1,5 @@
-import { makeAutoObservable } from 'mobx';
 import QuizService from '@/services/QuizService.js';
+import { makeAutoObservable } from 'mobx';
 
 export class QuizStore {
   _quizzes = [];
@@ -120,9 +120,15 @@ export class QuizStore {
         this.limit,
       );
 
-      this._quizzes.push(...data.items);
+      if (!Array.isArray(data)) {
+        console.error('Unexpected API response format:', data);
+        this.hasMore = false;
+        return;
+      }
 
-      this.hasMore = data.hasMore;
+      this._quizzes.push(...data);
+
+      this.hasMore = data.length === this.limit;
       this.page += 1;
 
       if (this._sortField) {

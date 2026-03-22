@@ -1,14 +1,16 @@
-import { useState, useRef, useEffect } from 'react';
-import styles from './Profile.module.scss';
 import DropdownMenu from '@/components/commons/DropdownMenu/DropdownMenu.jsx';
 import { useStore } from '@/hooks/useStore.js';
 import { observer } from 'mobx-react-lite';
+import { useEffect, useRef, useState } from 'react';
+import styles from './Profile.module.scss';
 
 export const Profile = observer(() => {
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef(null);
 
   const authStore = useStore().auth;
+
+  const avatarLink = `https://api.dicebear.com/7.x/avataaars/svg?seed=${authStore.user.id}`;
 
   const handleToggleMenu = () => {
     setMenuOpen((prev) => !prev);
@@ -27,11 +29,7 @@ export const Profile = observer(() => {
   return (
     <div className={styles.profileWrapper} ref={menuRef}>
       <div className={styles.profile} onClick={handleToggleMenu}>
-        <img
-          src="https://avatar.iran.liara.run/public"
-          alt="profile"
-          className={styles.profilePicture}
-        />
+        <img src={avatarLink} alt="profile" className={styles.profilePicture} />
         <p className={styles.profileName}>
           {authStore.user?.name || 'Профиль'}
         </p>

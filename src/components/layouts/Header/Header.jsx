@@ -1,11 +1,11 @@
 import { observer } from 'mobx-react-lite';
-import { Search } from '../../commons/Search/Search.jsx';
 import { Profile } from '../../commons/Profile/Profile.jsx';
+import { Search } from '../../commons/Search/Search.jsx';
 
-import styles from './Header.module.scss';
-import { useStore } from '@/hooks/useStore.js';
 import Button from '@/components/commons/Button/Button.jsx';
+import { useStore } from '@/hooks/useStore.js';
 import { useNavigate } from 'react-router-dom';
+import styles from './Header.module.scss';
 
 export const Header = observer(({ showSearch = false }) => {
   const authStore = useStore().auth;

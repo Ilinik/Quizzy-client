@@ -1,10 +1,10 @@
 import Button from '@/components/commons/Button/Button.jsx';
-import { ICON_MAP } from '@/constants/icons.js';
 import { colors } from '@/constants/colors.js';
+import { ICON_MAP } from '@/constants/icons.js';
 import { getDifficultyColor } from '@/helpers/getDifficultyColor.js';
 import { getDisplayName } from '@/helpers/getDisplayName.js';
-import { useNavigate } from 'react-router-dom';
 import { useStore } from '@/hooks/useStore.js';
+import { useNavigate } from 'react-router-dom';
 
 import styles from './QuizCard.module.scss';
 
