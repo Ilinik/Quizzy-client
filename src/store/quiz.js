@@ -124,15 +124,18 @@ export class QuizStore {
         this.limit,
       );
 
-      if (!Array.isArray(data)) {
+      const items = Array.isArray(data) ? data : data.items;
+
+      if (!Array.isArray(items)) {
         console.error('Unexpected API response format:', data);
         this.hasMore = false;
         return;
       }
 
-      this.addQuizzes(data);
+      this.addQuizzes(items);
 
-      this.hasMore = data.length === this.limit;
+      this.hasMore =
+        data.hasMore !== undefined ? data.hasMore : items.length === this.limit;
       this.page += 1;
 
       if (this._sortField) {
